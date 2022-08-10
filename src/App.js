@@ -1,16 +1,22 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
-import Routa from './routes';
+import Routes from './routes';
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+import AuthProvider from './context/auth' //garantir dados do usuario por toda aplicacao
 
 
 
 function App() {
   return (
-    <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <ToastContainer autoClose={2000} />
+        <Routes />
+      </BrowserRouter>
+    </AuthProvider>
 
-      <Routa />
 
-    </BrowserRouter>
   );
 }
 

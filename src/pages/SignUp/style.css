@@ -1,4 +1,4 @@
-.container-sign {
+.container-signup {
     margin: 12% auto;
     background-color: rgb(224, 222, 222);
     width: 500px;
@@ -11,12 +11,11 @@
     justify-content: center;
     align-items: center;
     border-block-end-style: groove;
-    border-block-start-style: ridge;
     border-block-end-color: #d6d4d3;
     border-block-start-color: #d6d4d3;
 }
 
-.logo-sign {
+.logo-signup {
     width: 100%;
     height: 100%;
     display: inline-flex;
@@ -24,10 +23,9 @@
     align-items: center;
     background-color: rgb(255, 255, 255);
     border-top-left-radius: 30px;
-
 }
 
-.logo-sign img {
+.logo-signup img {
     width: 300px;
     height: 230px;
     max-width: 100%;
@@ -36,16 +34,15 @@
     border-top-left-radius: 30px;
     padding: 20px;
     margin-bottom: 10px;
-    
 
 }
 
-.formulario-sign {
+.formulario-signup {
     text-align: center;
     margin: 5px auto;
 }
 
-.formulario-sign span {
+.formulario-signup span {
     display: inline-flex;
     font-size: 1.5em;
     font-weight: 400px;
@@ -53,7 +50,7 @@
 
 }
 
-.formulario-sign input {
+.formulario-signup input {
     width: 90%;
     max-width: 90%;
     margin: 5px;
@@ -83,35 +80,14 @@ form button:hover {
     font-weight: 600px;
 }
 
-.formulario-sign a {
+.formulario-signup a {
     cursor: pointer;
     font-size: 0.8em;
     display: inline-flex;
     margin-top: 5px;
-   
 }
 
-.formulario-sign a:hover {
+.formulario-signup a:hover {
     color: #f59a4f;
     font-weight: 600px;
 }
-
-/* box {
-    background-color: #f59a4f;
-    border-radius: 20px;
-    width: 11px;
-    height: 11px;
-    position: relative;
-    animation: mymove 5s infinite;
-    
-}
-
-@keyframes mymove {
-    from {
-        right: 0px;
-    }
-
-    to {
-        left: 10px;
-    }
-} */

@@ -1,7 +1,16 @@
-function Dashboard(){
-    return(
+
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth";
+
+
+function Dashboard() {
+    const { signOut } = useContext(AuthContext);
+
+    return (
         <div>
-            Dashboard
+           <span>Dashboard</span> <br></br>
+            <button onClick={signOut}>Sair</button>
+
         </div>
     )
 }
