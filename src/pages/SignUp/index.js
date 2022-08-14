@@ -11,8 +11,6 @@ import { AuthContext } from '../../context/auth'
 function SignUp() {
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur" });
     const onFormSubmit = data => {
-
-        console.log(data);
         createNewAccount(data);
 
     };
@@ -29,10 +27,6 @@ function SignUp() {
         }
     }
     const { createNewAccount, loadingAuth } = useContext(AuthContext)
-
-
-
-
 
     return (
 

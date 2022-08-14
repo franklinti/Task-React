@@ -36,7 +36,7 @@
     border-top-left-radius: 30px;
     padding: 20px;
     margin-bottom: 10px;
-    
+
 
 }
 
@@ -75,12 +75,15 @@ form button {
     font-weight: 600px;
     margin: 8px 0px 0px 0px;
     padding: 5px;
+    transition: transform 80ms step-start;
 }
 
 form button:hover {
     background-color: #fdfdfd;
     color: #f59a4f;
     font-weight: 600px;
+    border: 1px solid #f59a4f;
+
 }
 
 .formulario-sign a {
@@ -88,7 +91,8 @@ form button:hover {
     font-size: 0.8em;
     display: inline-flex;
     margin-top: 5px;
-   
+    transition: transform 0.5ms ease-in;
+
 }
 
 .formulario-sign a:hover {

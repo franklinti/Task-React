@@ -1,16 +1,14 @@
-
 import { useContext } from "react";
+import Header from "../../Components/Header";
 import { AuthContext } from "../../context/auth";
-
 
 function Dashboard() {
     const { signOut } = useContext(AuthContext);
 
     return (
         <div>
-           <span>Dashboard</span> <br></br>
-            <button onClick={signOut}>Sair</button>
-
+            <Header />
+            <span>Dashboard</span> <br></br>
         </div>
     )
 }

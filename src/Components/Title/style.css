@@ -1,0 +1,12 @@
+.title{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 5px;
+    background-color:  #d6d4d3;
+    padding: .8em;
+}
+.title span{
+    margin-left: 1em ;
+    font-size: 1.5em;
+}

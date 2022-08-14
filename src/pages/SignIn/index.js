@@ -1,6 +1,8 @@
+import * as React from 'react'
 import { Link } from 'react-router-dom';
 import './style.css';
 import logo from '../../assets/logo256x256.png'
+
 
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
@@ -14,7 +16,12 @@ function SignIn() {
     };
     const onErrors = (errors) => { };
     const registrerOptions = {
-        email: { required: "Email é necessario" },
+        email: {
+            required: "Email é necessario", pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Inserir email válido"
+            }
+        },
         senha: {
             required: "Senha é necessario",
             minLength: {
@@ -41,8 +48,8 @@ function SignIn() {
                     <small className='text-danger'>{errors?.email && errors.email.message}</small>
                     <input type="password" placeholder="senha" senha="senha" {...register('senha', registrerOptions.senha)} /><br></br>
                     <small className='text-danger'>{errors?.senha && errors.senha.message}</small>
-                    <button type="submit">{loadingAuth ? 'Carregando...': 'Acessar'}</button><br></br>
-                    <Link to="/cadastrar">Não possui conta? Cadastre-se.</Link>
+                    <button type="submit">{loadingAuth ? 'Carregando...' : 'Acessar'}</button><br></br>
+                    <Link to='cadastrar'>Não possui conta? Cadastre-se.</Link>
                 </form>
 
             </div>

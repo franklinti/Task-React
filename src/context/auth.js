@@ -4,7 +4,7 @@ import { getStorageValue, setStorageValue } from '../storage/storage'
 //Firebase Connectionn
 import { auth, db } from '../Services/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import { addDoc, collection, getDocs, updateDoc, doc, setDoc, } from 'firebase/firestore';
 import { toast } from "react-toastify";
 
 
@@ -32,7 +32,6 @@ export default function AuthProvider({ children }) {
 
     async function createNewAccount(data) {
         setLoadingAuth(true);
-        console.log("Add accoute email", data)
         await createUserWithEmailAndPassword(auth, data.email, data.senha).then((responseAuth) => {
             let user = {
                 nome: data.nome,
@@ -45,25 +44,27 @@ export default function AuthProvider({ children }) {
         }).catch((error) => {
             if (error.code === 'auth/weak-password') {
                 toast.warning('Senha fraca')
+                setLoadingAuth(false)
             } else if (error.code === 'auth/email-already-in-use') {
                 toast.warning('email ja existe')
+                setLoadingAuth(false)
             }
         })
     }
 
     async function writerUserFirestore(user) {
         const dbInstance = collection(db, 'users');
-        await addDoc(dbInstance, user).then((responseUser) => {
-            let token = responseUser.firestore._authCredentials.auth.auth.currentUser.accessToken
-
+        await setDoc(dbInstance, user,user.uid).then((responseUser) => {
+            let userId = responseUser.id;
+            console.log(userId)
             let dadosUsuarioCadastrado = {
+                id: userId,
                 uid: user.uid,
                 nome: user.nome,
                 email: user.email,
                 avataUrl: user.avatarUrl,
                 isAtive: user.isAtive,
-                token: token
-
+                // token: responseUser.firestore._authCredentials.auth.auth.currentUser.accessToken
             }
             setUser(dadosUsuarioCadastrado)
             setStorageValue('taskUser', JSON.stringify(dadosUsuarioCadastrado))
@@ -78,7 +79,7 @@ export default function AuthProvider({ children }) {
 
     async function signOut() {
         auth.signOut();
-        localStorage.removeItem('taskUser');
+        localStorage.clear('taskUser');
         setUser(null);
         setLoadingAuth(false);
         toast.success('Obrigado por usar nosso sistema! : )')
@@ -106,11 +107,19 @@ export default function AuthProvider({ children }) {
         const dbInstance = collection(db, 'users');
         const a = await getDocs(dbInstance, uid);
         const userFirestore = a.docs.map(doc => doc.data())
-        let userObject = userFirestore.find(userFirestore => userFirestore.uid)
+
+        let userObject = userFirestore.find(userFirestore => userFirestore.uid === uid)
         setUser(userObject)
         setStorageValue('taskUser', JSON.stringify(userObject))
         setLoadingAuth(false)
         toast.success('Acesso ao  sistema realizado com sucesso!')
+    }
+
+    async function editProfile(data, id) {
+        console.log(data, id)
+        /*   const dbInstance = collection(db, 'users');
+          const dados = doc(dbInstance, id);
+          await updateDoc(dados, { nome: data.nome }); */
     }
     /*  useEffect(() => {
          auth.onAuthStateChanged((user) => {
@@ -134,7 +143,9 @@ export default function AuthProvider({ children }) {
             signed: !!user,
             signIn,
             loadingAuth,
-            signOut
+            signOut,
+            user,
+            editProfile
         }}>
             {children}
         </AuthContext.Provider>
