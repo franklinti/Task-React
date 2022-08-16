@@ -12,8 +12,8 @@
     align-items: center;
     border-block-end-style: groove;
     border-block-start-style: ridge;
-    border-block-end-color: #d6d4d3;
-    border-block-start-color: #d6d4d3;
+    border-block-end-color: #f59a4f;
+    border-block-start-color: #f59a4f;
 }
 
 .logo-sign {
@@ -57,10 +57,11 @@
     width: 90%;
     max-width: 90%;
     margin: 5px;
-    border: 0;
+    border: 1px solid #f59a4f;
     border-radius: 5px;
     padding: 10px;
     background-color: white;
+    
 
 }
 
@@ -76,6 +77,7 @@ form button {
     margin: 8px 0px 0px 0px;
     padding: 5px;
     transition: transform 80ms step-start;
+    color: #ffffff;
 }
 
 form button:hover {

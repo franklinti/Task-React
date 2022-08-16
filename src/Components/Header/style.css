@@ -1,52 +1,86 @@
 .sidebar {
     width: 200px;
     max-width: 200px;
-    background-color: #d6d4d3;
     display: flex;
     flex-direction: column;
     position: fixed;
     height: 100%;
     overflow: none;
-    right: 0;
+    right: 5px;
     text-align: right;
 
 }
 
 .sidebar>div {
     background: url('../../assets/logo256x256.png');
-    background-color: rgb(214, 60, 60);
+    background-color: #f59a4f;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 150px;
     width: 200px;
     max-width: 200px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 1px solid #f59a4f;
+    margin: 15px auto;
 
 }
 
 .sidebar div img {
-    width: 90px;
-    height: 90px;
-    padding: 5%;
+    width: 100px;
+    min-width: 90px;
+    height: 100px;
+    min-height: 90px;
+    padding: .8em;
     max-width: 100px;
     border-radius: 50%;
     display: inline-flex;
-    -webkit-filter: drop-shadow(2px 3px 6px #f59a4f);
-    filter: drop-shadow(2px 3px 6px #f59a4f);
+    -webkit-filter: drop-shadow(2px 3px 10px #f59a4f);
+    filter: drop-shadow(2px 3px 10px #f59a4f);
     object-fit: cover;
 }
 
 .sidebar a {
     display: flex;
     justify-content: flex-end;
-    color: #f59a4f;
-    padding: 5%;
-    text-decoration: none;
-    flex-direction: row;
     align-items: center;
-    transition: ease-in-out .4s;
-    font-size: larger;
+    padding: 5%;
+    background-color: #f59a4f;
+    border: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 1px solid #f59a4f;
+    color: #ffffff;
+    margin: 5px;
+    transition: ease-in-out .5s;
     font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+}
+
+.sidebar button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-transform: calc(1em, 1 +1vh, 1.2em);
+    padding: 3%;
+    background-color: #f59a4f;
+    border: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 1px solid #f59a4f;
+    color: #ffffff;
+    margin: 5px;
+    text-indent: -2em;
+    transition: ease-in-out .5s;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
 
 }
 
@@ -55,13 +89,21 @@
     margin-left: 0.2em;
 }
 
-.sidebar a:hover,
-svg:hover {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600px;
-
+.sidebar button svg {
+    fill: #f59a4f;
+    margin-left: 0.2em;
 }
+
+.sidebar a:hover,
+button:hover {
+    background-color: #ffffff;
+    border: 1px solid #f59a4f;
+    color: #f59a4f;
+    font-size: 16px;
+    font-weight: 600px;
+}
+
+
 
 /* altera o title n oprofile*/
 .content {
@@ -128,9 +170,10 @@ svg:hover {
         padding: 0;
     }
 
-    .title{
+    .title {
         font-size: 0.8em;
     }
+
     .sidebar div {
         display: none;
     }
@@ -169,7 +212,8 @@ svg:hover {
         margin: 0;
         padding: 0;
     }
-    .title{
+
+    .title {
         font-size: .6em;
     }
 
