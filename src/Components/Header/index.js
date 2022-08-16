@@ -8,10 +8,11 @@ import { FiHome, FiUser, FiSettings, FiLogOut } from 'react-icons/fi'
 
 export default function Header() {
     const { user, signOut } = useContext(AuthContext);
+
     return (
         <div className='sidebar'>
             <div>
-                <img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="fotoAvatar" />
+                <img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="fotoPerfilUser" />
             </div>
             <Link to="/dashboard">
                 Tasks
@@ -29,7 +30,7 @@ export default function Header() {
             </Link>
 
             <button onClick={signOut}>
-                <FiLogOut color="black" size={22} />
+                Sair<FiLogOut color="#FFF" size={22} />
             </button>
 
 

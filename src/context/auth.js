@@ -6,6 +6,8 @@ import { auth, db } from '../Services/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { addDoc, collection, getDocs, updateDoc, doc, setDoc, } from 'firebase/firestore';
 import { toast } from "react-toastify";
+import { storageFirebase } from "../Services/firebase";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 
 export const AuthContext = createContext({});
@@ -13,26 +15,28 @@ export const AuthContext = createContext({});
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loadingAuth, setLoadingAuth] = useState(false);
+    const [loadingFotoPerfil, setLoadingFotoPerfil] = useState(false);
+    const [loadingNomePerfil, setloadingNomePerfil] = useState(false);
 
 
     useEffect(() => {
-        function loadUserStorage() {
-            const userStorage = getStorageValue('taskUser');
-            if (userStorage) {
-                setUser(userStorage)
 
-            }
-            setLoadingAuth(false)
-
-        }
         loadUserStorage();
 
     }, [])
+    function loadUserStorage() {
+        const userStorage = getStorageValue('taskUser');
+        if (userStorage) {
+            setUser(userStorage)
+            setLoadingAuth(false)
+        }
+        setLoadingAuth(false)
+    }
 
 
     async function createNewAccount(data) {
         setLoadingAuth(true);
-        await createUserWithEmailAndPassword(auth, data.email, data.senha).then((responseAuth) => {
+        createUserWithEmailAndPassword(auth, data.email, data.senha).then((responseAuth) => {
             let user = {
                 nome: data.nome,
                 uid: responseAuth.user.uid,
@@ -54,15 +58,14 @@ export default function AuthProvider({ children }) {
 
     async function writerUserFirestore(user) {
         const dbInstance = collection(db, 'users');
-        await setDoc(dbInstance, user,user.uid).then((responseUser) => {
-            let userId = responseUser.id;
-            console.log(userId)
+        const docRef = doc(dbInstance, user.uid)
+        setDoc(docRef, user).then(() => {
+
             let dadosUsuarioCadastrado = {
-                id: userId,
                 uid: user.uid,
                 nome: user.nome,
                 email: user.email,
-                avataUrl: user.avatarUrl,
+                avatarUrl: user.avatarUrl,
                 isAtive: user.isAtive,
                 // token: responseUser.firestore._authCredentials.auth.auth.currentUser.accessToken
             }
@@ -73,7 +76,7 @@ export default function AuthProvider({ children }) {
         }).catch((error) => {
             console.log(error)
             setLoadingAuth(false)
-            toast.success('Nao foi possivel cadastra');
+            toast.success('Nao foi possivel cadastrar');
         })
     }
 
@@ -86,7 +89,7 @@ export default function AuthProvider({ children }) {
     }
     async function signIn(user) {
         setLoadingAuth(true)
-        await signInWithEmailAndPassword(auth, user.email, user.senha).then(async (responseLogin) => {
+        signInWithEmailAndPassword(auth, user.email, user.senha).then(async (responseLogin) => {
             const uid = responseLogin.user.uid;
             getUserFirestore(uid);
         }).catch((error) => {
@@ -111,15 +114,52 @@ export default function AuthProvider({ children }) {
         let userObject = userFirestore.find(userFirestore => userFirestore.uid === uid)
         setUser(userObject)
         setStorageValue('taskUser', JSON.stringify(userObject))
-        setLoadingAuth(false)
+        // setLoadingAuth(false)
         toast.success('Acesso ao  sistema realizado com sucesso!')
     }
 
-    async function editProfile(data, id) {
-        console.log(data, id)
-        /*   const dbInstance = collection(db, 'users');
-          const dados = doc(dbInstance, id);
-          await updateDoc(dados, { nome: data.nome }); */
+    async function editFotoAvatar(data) {
+
+        const storageRef = ref(storageFirebase, `perfilImage/${user.uid}/${data.name}`);
+
+        uploadBytes(storageRef, data).then(async (snapshot) => {
+            getDownloadURL(storageRef).then(async (urlFoto) => {
+                console.log(urlFoto)
+                const dbInstance = collection(db, 'users');
+                const dados = doc(dbInstance, user.uid);
+                //update firestore
+                updateDoc(dados, { avatarUrl: urlFoto }).then(() => {
+                    console.log(urlFoto)
+                    let dados = {
+                        ...user, avatarUrl: urlFoto
+                    }
+                    setUser(dados);
+                    setStorageValue('taskUser', JSON.stringify(dados))
+                    toast.success('Foto perfil atualizado!')
+                }).catch(error => console.log(error));
+            }).catch(error => {
+                console.log(error)
+                toast.error('Foto perfil não atualizada!')
+            })
+        }).catch(error => console.log(error))
+    }
+    async function editNome(data) {
+
+        const dbInstance = collection(db, 'users');
+        const dadosFirestore = doc(dbInstance, user.uid);
+        updateDoc(dadosFirestore, { nome: data.nome }).then(() => {
+            let dados = {
+                ...user, nome: data.nome
+            }
+            setUser(dados);
+            setStorageValue('taskUser', JSON.stringify(dados))
+            setloadingNomePerfil(false)
+
+
+        }).catch(error => {
+            console.log(error)
+            toast.error('Nome não atualizado!');
+        });
     }
     /*  useEffect(() => {
          auth.onAuthStateChanged((user) => {
@@ -128,7 +168,7 @@ export default function AuthProvider({ children }) {
                      uid: user.uid,
                      nome: user.nome,
                      email: user.email,
-                     avataUrl: user.avatarUrl,
+                     avatarUrl: user.avatarUrl,
                      isAtive: user.isAtive,
                      token: user.token
  
@@ -140,12 +180,14 @@ export default function AuthProvider({ children }) {
     return (
         <AuthContext.Provider value={{
             createNewAccount,
+            user,
             signed: !!user,
             signIn,
             loadingAuth,
             signOut,
-            user,
-            editProfile
+            editFotoAvatar,
+            editNome
+
         }}>
             {children}
         </AuthContext.Provider>
