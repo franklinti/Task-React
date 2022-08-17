@@ -4,7 +4,7 @@ import { getStorageValue, setStorageValue } from '../storage/storage'
 //Firebase Connectionn
 import { auth, db } from '../Services/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection, getDocs, updateDoc, doc, setDoc, } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc, setDoc, } from 'firebase/firestore';
 import { toast } from "react-toastify";
 import { storageFirebase } from "../Services/firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
@@ -15,7 +15,7 @@ export const AuthContext = createContext({});
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loadingAuth, setLoadingAuth] = useState(false);
-    const [loadingFotoPerfil, setLoadingFotoPerfil] = useState(false);
+    // const [loadingFotoPerfil, setLoadingFotoPerfil] = useState(false);
     const [loadingNomePerfil, setloadingNomePerfil] = useState(false);
 
 
@@ -24,8 +24,8 @@ export default function AuthProvider({ children }) {
         loadUserStorage();
 
     }, [])
-    function loadUserStorage() {
-        const userStorage = getStorageValue('taskUser');
+    async function loadUserStorage() {
+        const userStorage = await getStorageValue('taskUser');
         if (userStorage) {
             setUser(userStorage)
             setLoadingAuth(false)

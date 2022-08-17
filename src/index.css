@@ -220,6 +220,9 @@ a:hover {
   letter-spacing: 1px;
   text-decoration: none;
   outline: auto;
+  position: relative;
+
+
 }
 
 .sidebar a svg {
@@ -318,16 +321,47 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (min-width: 500px) and (max-width: 659px) {
   .sidebar {
-    max-width: 60%;
-    height: auto;
-    border-bottom-left-radius: 3em;
+    min-width: 98%;
+    height: 12%;
     flex-direction: row-reverse;
   }
 
   .sidebar div {
+    max-width: 15%;
+    max-height: 90%;
+    margin: 6px auto;
+    background-size: cover;
+  }
+
+  .sidebar div img {
     display: none;
+  }
+
+  .sidebar a {
+    padding: 2%;
+    font-size: 12px;
+
+  }
+
+  .sidebar a svg {
+    margin-left: 0.1em;
+    width: 20px;
+    height: 20px;
+  }
+
+  .sidebar a+button {
+    padding: 1%;
+    font-size: 12px;
+
+  }
+
+
+  .sidebar button svg {
+    margin-left: 0.1em;
+    width: 20px;
+    height: 20px;
   }
 
   .sidebar a:hover,
@@ -339,24 +373,55 @@ a:hover {
     font-weight: 600px;
   }
 
-  .sidebar button {
-    font-size: 0px;
-    outline: auto;
+  /*Title*/
+  .content {
+    margin-right: 200px;
+    padding: 12% 15px;
+    width: 100%;
   }
 
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (min-width: 400px) and (max-width: 499px) {
   .sidebar {
-    max-width: 55%;
-    height: auto;
-    border-bottom-left-radius: 3em;
+    min-width: 98%;
+    height: 12%;
     flex-direction: row-reverse;
-
   }
 
   .sidebar div {
+    max-width: 15%;
+    max-height: 90%;
+    margin: 6px auto;
+    background-size: cover;
+  }
+
+  .sidebar div img {
     display: none;
+  }
+
+  .sidebar a {
+    padding: 1%;
+    font-size: 9px;
+
+  }
+
+  .sidebar a svg {
+    margin-left: 0.2em;
+    width: 15px;
+    height: 15px;
+  }
+
+  .sidebar a+button {
+    padding: 1%;
+    font-size: 10px;
+
+  }
+
+  .sidebar button svg {
+    margin-left: 0.2em;
+    width: 15px;
+    height: 15px;
   }
 
   .sidebar a:hover,
@@ -368,12 +433,69 @@ a:hover {
     font-weight: 600px;
   }
 
-  .sidebar button {
-    font-size: 0px;
-    outline: auto;
+  /*Title*/
+  .content {
+    margin-right: 200px;
+    padding: 16% 15px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 399px) {
+  .sidebar {
+    min-width: 98%;
+    height: 12%;
+    flex-direction: row-reverse;
+  }
+
+  .sidebar div {
+    max-width: 15%;
+    max-height: 90%;
+    margin: 6px auto;
+    background-size: cover;
+  }
+
+  .sidebar div img {
+    display: none;
+  }
+
+  .sidebar a {
+    padding: 1%;
+    font-size: 9px;
+
   }
 
   .sidebar a svg {
-    display: none;
+    margin-left: 0.2em;
+    width: 15px;
+    height: 15px;
+  }
+
+  .sidebar a+button {
+    padding: 1%;
+    font-size: 0px;
+
+  }
+
+  .sidebar button svg {
+    margin-left: 0.2em;
+    width: 15px;
+    height: 15px;
+  }
+
+  .sidebar a:hover,
+  button:hover {
+    background-color: #ffffff;
+    border: 1px solid #f59a4f;
+    color: #f59a4f;
+    font-size: 16px;
+    font-weight: 600px;
+  }
+
+  /*Title*/
+  .content {
+    margin-right: 200px;
+    padding: 16% 15px;
+    width: 100%;
   }
 }
