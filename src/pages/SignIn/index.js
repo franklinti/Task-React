@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom';
-import './style.css';
 import logo from '../../assets/logo256x256.png'
 
 
@@ -33,31 +32,23 @@ function SignIn() {
     const { signIn, loadingAuth } = useContext(AuthContext);
 
     return (
-
-        <div className="container-sign">
-
-            <div className="logo-sign">
+        <div className="container">
+            <div>
                 <img src={logo} alt="logomarca" />
                 {/* <span className='box'></span> */}
             </div>
-            <div className='formulario-sign'>
-
+            <div className="formulario">
                 <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-                    <span>Autenticar</span><br></br>
-                    <input type="email" placeholder="e-mail" email="email" {...register('email', registrerOptions.email)} /><br></br>
-                    <small className='text-danger'>{errors?.email && errors.email.message}</small>
-                    <input type="password" placeholder="senha" senha="senha" {...register('senha', registrerOptions.senha)} /><br></br>
-                    <small className='text-danger'>{errors?.senha && errors.senha.message}</small>
-                    <button type="submit">{loadingAuth ? 'Carregando...' : 'Acessar'}</button><br></br>
+                    <span>Autenticar</span>
+                    <input type="email" placeholder="e-mail" email="email" {...register('email', registrerOptions.email)} />
+                    <small>{errors?.email && errors.email.message}</small>
+                    <input type="password" placeholder="senha" senha="senha" {...register('senha', registrerOptions.senha)} />
+                    <small>{errors?.senha && errors.senha.message}</small>
+                    <button type="submit" className="btn-right">{loadingAuth ? 'Carregando...' : 'Acessar'}</button>
                     <Link to='cadastrar'>Não possui conta? Cadastre-se.</Link>
                 </form>
-
             </div>
-
         </div>
-
-
-
     )
 }
 export default SignIn;

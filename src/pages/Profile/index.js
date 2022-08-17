@@ -14,7 +14,6 @@ export default function Profile() {
     const { user, editFotoAvatar, editNome } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur" });
     const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl)
-    // const [imgAvatar, setImgAvatar] = useState(null);
 
     const onFormSubmit = data => {
         isCheckForm(data);

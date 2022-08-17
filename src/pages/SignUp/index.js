@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import './style.css';
 import logo from '../../assets/logo256x256.png'
 
 import { useForm } from 'react-hook-form';
@@ -30,20 +29,20 @@ function SignUp() {
 
     return (
 
-        <div className="container-signup">
-            <div className="logo-signup ">
+        <div className="container">
+            <div>
                 <img src={logo} alt="logomarca" />
             </div>
-            <div className='formulario-signup '>
+            <div className='formulario'>
                 <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
-                    <span>Cadastro</span><br></br>
-                    <input type="text" placeholder="nome" email="nome" {...register('nome', registrerOptions.nome)} /><br></br>
+                    <span>Cadastro</span>
+                    <input type="text" placeholder="nome" email="nome" {...register('nome', registrerOptions.nome)} />
                     <small className='text-danger'>{errors?.nome && errors.nome.message}</small>
-                    <input type="email" placeholder="e-mail" email="email" {...register('email', registrerOptions.email)} /><br></br>
+                    <input type="email" placeholder="e-mail" email="email" {...register('email', registrerOptions.email)} />
                     <small className='text-danger'>{errors?.email && errors.email.message}</small>
-                    <input type="password" placeholder="senha" senha="senha" {...register('senha', registrerOptions.senha)} /><br></br>
+                    <input type="password" placeholder="senha" senha="senha" {...register('senha', registrerOptions.senha)} />
                     <small className='text-danger'>{errors?.senha && errors.senha.message}</small>
-                    <button type="submit">{loadingAuth ? 'Cadastrando...':'Cadastrar'}</button><br></br>
+                    <button type="submit" className="btn-right">{loadingAuth ? 'Cadastrando...':'Cadastrar'}</button>
                     <Link to="/">Já possui conta? Conecte-se.</Link>
                 </form>
 

@@ -9,19 +9,371 @@ body,
 #root {
   height: 100%;
 }
-*:focus{
+
+*:focus {
   outline: 0;
 }
-body{
+
+body {
   font: 14px sans-serif;
   background-color: #EFEFEF;
 }
-a{
+
+a {
   text-decoration: none;
+  color: gray
 }
-ul{
+
+ul {
   list-style: none;
 }
-button{
+
+button {
   cursor: pointer;
+}
+
+
+
+/*SignIn SinguP*/
+.container {
+  margin: 15% auto;
+  background-color: rgb(224, 222, 222);
+  width: 500px;
+  height: 300px;
+  max-width: 500px;
+  max-height: 100%;
+  border-top-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-block-end-style: groove;
+  border-block-start-style: ridge;
+  border-block-end-color: #f59a4f;
+  border-block-start-color: #f59a4f;
+}
+
+.container div {
+  width: 250px;
+  height: 100%;
+  max-width: 250px;
+  border-top-left-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.container div img {
+  height: 100%;
+  max-width: 250px;
+  border-top-left-radius: 30px;
+  object-fit: fill;
+  background-color: #ffffff;
+}
+
+
+.container div form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container div form span {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+  font-weight: 600px;
+  margin-bottom: 10px;
+
+}
+
+.container div form input {
+  max-width: 90%;
+  border: 1px solid #f59a4f;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+  margin: 7px;
+  height: 35px;
+
+}
+
+.container div form small {
+  color: #f03d1d;
+  margin-left: 10px;
+}
+
+.btn-right {
+  margin: 10px auto;
+  width: 70%;
+  height: 35px;
+  border: 0;
+  border-radius: 5px;
+  background-color: #f59a4f;
+  font-size: 1.2em;
+  padding: 7px;
+  transition: transform 0.8ms step-start;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 7px;
+}
+
+.btn-right:hover {
+  margin: 10px auto;
+  width: 70%;
+  border: 1px solid #f59a4f;
+  border-radius: 5px;
+  background-color: #fdfdfd;
+  font-size: 1.2em;
+  padding: 7px;
+  transition: transform 0.8ms step-start;
+  color: #f59a4f;
+  margin-bottom: 7px;
+}
+
+a:hover {
+  color: #f59a4f;
+}
+
+/*Header*/
+.sidebar {
+  width: 200px;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100%;
+  overflow: none;
+  right: 5px;
+  text-align: right;
+
+}
+
+.sidebar>div {
+  background: url('./assets/logo256x256.png');
+  background-color: #f59a4f;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+  width: 200px;
+  max-width: 200px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: 1px solid #f59a4f;
+  margin: 15px auto;
+
+}
+
+.sidebar div img {
+  width: 100px;
+  min-width: 90px;
+  height: 100px;
+  min-height: 90px;
+  padding: .8em;
+  max-width: 100px;
+  border-radius: 50%;
+  display: inline-flex;
+  -webkit-filter: drop-shadow(2px 3px 10px #f59a4f);
+  filter: drop-shadow(2px 3px 10px #f59a4f);
+  object-fit: cover;
+}
+
+.sidebar a {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 6%;
+  background-color: #f59a4f;
+  border: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: 1px solid #f59a4f;
+  color: #ffffff;
+  margin: 5px;
+  transition: ease-in-out .5s;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+  outline: auto;
+}
+
+.sidebar a+button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 6%;
+  background-color: #f59a4f;
+  border: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: 1px solid #f59a4f;
+  color: #ffffff;
+  margin: 5px;
+  transition: ease-in-out .5s;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: none;
+  outline: auto;
+}
+
+.sidebar a svg {
+  margin-left: 0.2em;
+  width: 25px;
+  height: 25px;
+}
+
+
+.sidebar button svg {
+  margin-left: 0.2em;
+  width: 25px;
+  height: 25px;
+}
+
+.sidebar a:hover {
+  background-color: #ffffff;
+  color: #f59a4f;
+  font-size: 16px;
+  font-weight: 600px;
+  fill: #f59a4f;
+}
+
+.sidebar a+button:hover {
+  background-color: #ffffff;
+  color: #f59a4f;
+  font-size: 16px;
+  font-weight: 600px;
+  fill: #f59a4f;
+}
+
+/*Title*/
+.content {
+  margin-right: 200px;
+  padding: 18px 15px;
+}
+
+/*Responsive*/
+@media screen and (max-width: 700px) {
+  .sidebar {
+    min-width: 98%;
+    height: 12%;
+    flex-direction: row-reverse;
+  }
+
+  .sidebar div {
+    max-width: 15%;
+    max-height: 90%;
+    margin: 6px auto;
+    background-size: cover;
+  }
+
+  .sidebar div img {
+    display: none;
+  }
+
+  .sidebar a {
+    padding: 3%;
+    font-size: 12px;
+
+  }
+
+  .sidebar a svg {
+    margin-left: 0.2em;
+    width: 25px;
+    height: 25px;
+  }
+
+  .sidebar a+button {
+    padding: 3%;
+    font-size: 12px;
+
+  }
+
+
+  .sidebar button svg {
+    margin-left: 0.2em;
+    width: 25px;
+    height: 25px;
+  }
+
+  .sidebar a:hover,
+  button:hover {
+    background-color: #ffffff;
+    border: 1px solid #f59a4f;
+    color: #f59a4f;
+    font-size: 16px;
+    font-weight: 600px;
+  }
+
+
+  .content {
+    margin-right: 200px;
+    padding: 9% 15px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .sidebar {
+    max-width: 60%;
+    height: auto;
+    border-bottom-left-radius: 3em;
+    flex-direction: row-reverse;
+  }
+
+  .sidebar div {
+    display: none;
+  }
+
+  .sidebar a:hover,
+  button:hover {
+    background-color: #ffffff;
+    border: 1px solid #f59a4f;
+    color: #f59a4f;
+    font-size: 16px;
+    font-weight: 600px;
+  }
+
+  .sidebar button {
+    font-size: 0px;
+    outline: auto;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar {
+    max-width: 55%;
+    height: auto;
+    border-bottom-left-radius: 3em;
+    flex-direction: row-reverse;
+
+  }
+
+  .sidebar div {
+    display: none;
+  }
+
+  .sidebar a:hover,
+  button:hover {
+    background-color: #ffffff;
+    border: 1px solid #f59a4f;
+    color: #f59a4f;
+    font-size: 16px;
+    font-weight: 600px;
+  }
+
+  .sidebar button {
+    font-size: 0px;
+    outline: auto;
+  }
+
+  .sidebar a svg {
+    display: none;
+  }
 }

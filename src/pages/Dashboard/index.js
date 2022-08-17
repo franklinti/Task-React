@@ -8,7 +8,7 @@ function Dashboard() {
     return (
         <div>
             <Header />
-            <span>Dashboard</span> <br></br>
+            <span>Dashboard</span>
         </div>
     )
 }
