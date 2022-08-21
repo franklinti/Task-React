@@ -2,11 +2,11 @@ import { useState, createContext, useEffect } from "react";
 
 import { getStorageValue, setStorageValue } from '../storage/storage'
 //Firebase Connectionn
-import { auth, db } from '../Services/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, db } from '../services/firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { collection, getDocs, updateDoc, doc, setDoc, } from 'firebase/firestore';
 import { toast } from "react-toastify";
-import { storageFirebase } from "../Services/firebase";
+import { storageFirebase } from "../services/firebase";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
 
 
@@ -32,7 +32,6 @@ export default function AuthProvider({ children }) {
         }
         setLoadingAuth(false)
     }
-
 
     async function createNewAccount(data) {
         setLoadingAuth(true);
@@ -161,6 +160,25 @@ export default function AuthProvider({ children }) {
             toast.error('Nome não atualizado!');
         });
     }
+
+    /** Login GOOGLE */
+    async function AuthGoogle() {
+
+        const provider = auth.GoogleAuthProvider;
+        signInWithPopup(auth, provider).then((result) => {
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const user = result.user;
+            console.log(user)
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+        })
+    }
     /*  useEffect(() => {
          auth.onAuthStateChanged((user) => {
              if (user) {
@@ -186,7 +204,8 @@ export default function AuthProvider({ children }) {
             loadingAuth,
             signOut,
             editFotoAvatar,
-            editNome
+            editNome,
+            AuthGoogle
 
         }}>
             {children}

@@ -1,0 +1,72 @@
+.modal {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: #f5ebdf;
+    margin: 1% auto;
+    max-width: 25em;
+    min-height: 20em;
+    border: 1px solid #f59a4f;
+
+
+}
+
+.containermodal {
+    display: flex;
+    flex-direction: column;
+}
+
+.containermodal>button {
+    max-width: 10%;
+    max-height: 5%;
+    font-size: 0;
+    border: 0;
+    margin: 3% 0% 2% 87%;
+    background-color: #f59a4f;
+    color: #f59a4f;
+    border-radius: 5px;
+}
+
+.containermodal>button svg {
+    color: aliceblue;
+    fill: aliceblue;
+    min-width: 60%;
+
+}
+
+.containermodal h2 {
+    display: flex;
+    justify-content: center;
+    padding: 1%;
+
+}
+
+.row form {
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+}
+
+.row select {
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    font-size: 10px;
+}
+.row select option{
+   font-size: 12px;
+}
+.status{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1%;
+}
+.row form label{
+    margin-bottom: 1%;
+}
+.row form textarea{
+    height: 70px;
+    margin-bottom: 1%;
+    font-size: 12px;
+}

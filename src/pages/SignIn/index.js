@@ -6,7 +6,7 @@ import logo from '../../assets/logo256x256.png'
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/auth';
-
+import { FiUser} from 'react-icons/fi';
 function SignIn() {
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur" });
     const onFormSubmit = data => {
@@ -29,7 +29,7 @@ function SignIn() {
             }
         }
     }
-    const { signIn, loadingAuth } = useContext(AuthContext);
+    const { signIn, loadingAuth ,AuthGoogle} = useContext(AuthContext);
 
     return (
         <div className="container">
@@ -46,8 +46,11 @@ function SignIn() {
                     <small>{errors?.senha && errors.senha.message}</small>
                     <button type="submit" className="btn-right">{loadingAuth ? 'Carregando...' : 'Acessar'}</button>
                     <Link to='cadastrar'>Não possui conta? Cadastre-se.</Link>
+                    
                 </form>
+               {/*  <button  onClick={AuthGoogle}> <FiUser size={25} /></button> */}
             </div>
+           
         </div>
     )
 }

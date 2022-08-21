@@ -1,0 +1,32 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    padding: 5%;
+    background-color: #f59a4f;
+    border: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 1px solid #f59a4f;
+    color: #ffffff;
+    margin-left: 20%;
+    transition: ease-in-out .5s;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    outline: auto;
+
+
+
+}
+
+.btn:hover {
+    background-color: #ffffff;
+    border: 1px solid #f59a4f;
+    color: #f59a4f;
+    font-size: 16px;
+    font-weight: 600px;
+}

@@ -17,6 +17,7 @@ body,
 body {
   font: 14px sans-serif;
   background-color: #EFEFEF;
+  
 }
 
 a {
@@ -32,13 +33,17 @@ button {
   cursor: pointer;
 }
 
+small {
+  color: #f03d1d;
+  margin-left: 10px;
+}
 
 
 /*SignIn SinguP*/
 .container {
   margin: 15% auto;
   background-color: rgb(224, 222, 222);
-  width: 500px;
+  max-width: 500px;
   height: 300px;
   max-width: 500px;
   max-height: 100%;
@@ -51,6 +56,7 @@ button {
   border-block-start-style: ridge;
   border-block-end-color: #f59a4f;
   border-block-start-color: #f59a4f;
+  overflow: hidden;
 }
 
 .container div {
@@ -65,11 +71,13 @@ button {
 }
 
 .container div img {
+  max-width: 100%;
   height: 100%;
-  max-width: 250px;
   border-top-left-radius: 30px;
-  object-fit: fill;
+  object-fit: contain;
   background-color: #ffffff;
+  display: flex;
+  margin: -10px auto;
 }
 
 
@@ -83,7 +91,7 @@ button {
   justify-content: center;
   font-size: 1.5em;
   font-weight: 600px;
-  margin-bottom: 10px;
+
 
 }
 
@@ -98,14 +106,9 @@ button {
 
 }
 
-.container div form small {
-  color: #f03d1d;
-  margin-left: 10px;
-}
-
 .btn-right {
   margin: 10px auto;
-  width: 70%;
+  width: 80%;
   height: 35px;
   border: 0;
   border-radius: 5px;
@@ -116,19 +119,26 @@ button {
   color: #ffffff;
   margin-top: 10px;
   margin-bottom: 7px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  outline: auto;
+
 }
 
 .btn-right:hover {
   margin: 10px auto;
-  width: 70%;
+  width: 80%;
   border: 1px solid #f59a4f;
   border-radius: 5px;
   background-color: #fdfdfd;
   font-size: 1.2em;
   padding: 7px;
-  transition: transform 0.8ms step-start;
   color: #f59a4f;
   margin-bottom: 7px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 a:hover {
@@ -145,7 +155,7 @@ a:hover {
   height: 100%;
   overflow: none;
   right: 5px;
-  text-align: right;
+
 
 }
 
@@ -162,7 +172,9 @@ a:hover {
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
   border: 1px solid #f59a4f;
-  margin: 15px auto;
+  display: flex;
+  justify-content: flex-end;
+
 
 }
 
@@ -174,7 +186,6 @@ a:hover {
   padding: .8em;
   max-width: 100px;
   border-radius: 50%;
-  display: inline-flex;
   -webkit-filter: drop-shadow(2px 3px 10px #f59a4f);
   filter: drop-shadow(2px 3px 10px #f59a4f);
   object-fit: cover;
@@ -184,7 +195,7 @@ a:hover {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 6%;
+  padding: 4%;
   background-color: #f59a4f;
   border: none;
   border-top-left-radius: 30px;
@@ -205,7 +216,7 @@ a:hover {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 6%;
+  padding: 4%;
   background-color: #f59a4f;
   border: none;
   border-top-left-radius: 30px;
@@ -221,21 +232,14 @@ a:hover {
   text-decoration: none;
   outline: auto;
   position: relative;
-
-
 }
 
 .sidebar a svg {
   margin-left: 0.2em;
-  width: 25px;
-  height: 25px;
 }
-
 
 .sidebar button svg {
   margin-left: 0.2em;
-  width: 25px;
-  height: 25px;
 }
 
 .sidebar a:hover {
@@ -261,7 +265,7 @@ a:hover {
 }
 
 /*Responsive*/
-@media screen and (max-width: 700px) {
+/* @media screen and (max-width: 700px) {
   .sidebar {
     min-width: 98%;
     height: 12%;
@@ -270,9 +274,10 @@ a:hover {
 
   .sidebar div {
     max-width: 15%;
-    max-height: 90%;
+    max-height: 50%;
     margin: 6px auto;
     background-size: cover;
+    max-height: 65%;
   }
 
   .sidebar div img {
@@ -282,7 +287,7 @@ a:hover {
   .sidebar a {
     padding: 3%;
     font-size: 12px;
-
+    max-height: 30%;
   }
 
   .sidebar a svg {
@@ -294,6 +299,7 @@ a:hover {
   .sidebar a+button {
     padding: 3%;
     font-size: 12px;
+    max-height: 30%;
 
   }
 
@@ -320,9 +326,9 @@ a:hover {
     width: 100%;
   }
 }
-
-@media screen and (min-width: 500px) and (max-width: 659px) {
-  .sidebar {
+ */
+@media screen and (max-width: 500px) {
+  /* .sidebar {
     min-width: 98%;
     height: 12%;
     flex-direction: row-reverse;
@@ -333,6 +339,7 @@ a:hover {
     max-height: 90%;
     margin: 6px auto;
     background-size: cover;
+    max-height: 50%;
   }
 
   .sidebar div img {
@@ -342,6 +349,7 @@ a:hover {
   .sidebar a {
     padding: 2%;
     font-size: 12px;
+    max-height: 50%;
 
   }
 
@@ -354,6 +362,7 @@ a:hover {
   .sidebar a+button {
     padding: 1%;
     font-size: 12px;
+    max-height: 50%;
 
   }
 
@@ -371,19 +380,19 @@ a:hover {
     color: #f59a4f;
     font-size: 16px;
     font-weight: 600px;
-  }
+  } */
 
   /*Title*/
-  .content {
+  /* .content {
     margin-right: 200px;
     padding: 12% 15px;
     width: 100%;
-  }
+  } */
 
 }
 
-@media screen and (min-width: 400px) and (max-width: 499px) {
-  .sidebar {
+@media screen and (max-width: 400px) {
+  /* .sidebar {
     min-width: 98%;
     height: 12%;
     flex-direction: row-reverse;
@@ -394,6 +403,7 @@ a:hover {
     max-height: 90%;
     margin: 6px auto;
     background-size: cover;
+    max-height: 50%;
   }
 
   .sidebar div img {
@@ -403,6 +413,7 @@ a:hover {
   .sidebar a {
     padding: 1%;
     font-size: 9px;
+    max-height: 50%;
 
   }
 
@@ -415,6 +426,7 @@ a:hover {
   .sidebar a+button {
     padding: 1%;
     font-size: 10px;
+    max-height: 50%;
 
   }
 
@@ -431,28 +443,35 @@ a:hover {
     color: #f59a4f;
     font-size: 16px;
     font-weight: 600px;
-  }
+  } */
 
   /*Title*/
-  .content {
+  /*  .content {
     margin-right: 200px;
     padding: 16% 15px;
     width: 100%;
-  }
+  } */
 }
 
-@media screen and (min-width: 360px) and (max-width: 399px) {
+@media only screen and (min-width: 320px) and (max-width:428px) {
+  .container {
+    margin: 50% auto;
+    overflow: hidden;
+    
+  }
+
   .sidebar {
     min-width: 98%;
-    height: 12%;
+    height: 10%;
     flex-direction: row-reverse;
+    margin: 1% auto;
   }
 
   .sidebar div {
-    max-width: 15%;
-    max-height: 90%;
-    margin: 6px auto;
-    background-size: cover;
+    width: 17%;
+    height: 50%;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .sidebar div img {
@@ -460,42 +479,60 @@ a:hover {
   }
 
   .sidebar a {
-    padding: 1%;
-    font-size: 9px;
+    font-size: 0px;
+    width: 20%;
+    height: 20%;
+    margin: 0 auto;
+    margin-left: 1px;
+    display: flex;
+    justify-content: center;
 
-  }
-
-  .sidebar a svg {
-    margin-left: 0.2em;
-    width: 15px;
-    height: 15px;
   }
 
   .sidebar a+button {
-    padding: 1%;
     font-size: 0px;
-
+    width: 20%;
+    height: 20%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
 
+
+  /* 
   .sidebar button svg {
+
     margin-left: 0.2em;
     width: 15px;
-    height: 15px;
+    height: 15px; 
   }
-
-  .sidebar a:hover,
-  button:hover {
+*/
+  .sidebar a:hover {
     background-color: #ffffff;
     border: 1px solid #f59a4f;
     color: #f59a4f;
-    font-size: 16px;
-    font-weight: 600px;
+    font-size: 0px;
+    width: 21%;
+  }
+
+  .sidebar a+button:hover {
+    background-color: #ffffff;
+    border: 1px solid #f59a4f;
+    color: #f59a4f;
+    font-size: 0px;
+    width: 21%;
   }
 
   /*Title*/
   .content {
     margin-right: 200px;
-    padding: 16% 15px;
+    padding: 15% 15px;
     width: 100%;
+  }
+  table{
+    font-size: clamp(0.5em, 0.5em + 0.5vh, 1.2em);
+  }
+  table tbody tr td button  > svg{
+    width: 20px;
   }
 }
