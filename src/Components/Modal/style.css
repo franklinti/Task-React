@@ -1,52 +1,96 @@
 .modal {
-    border-top-left-radius: 30px;
+    border-top-left-radius: 10px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: #f5ebdf;
-    margin: 1% auto;
-    max-width: 25em;
-    min-height: 20em;
+    width: calc(100% - 228px);
     border: 1px solid #f59a4f;
-
-
+    height: 440px;
+    margin-left: 13px;
+    
 }
 
-.containermodal {
+.modal h2 {
+    text-align: center;
+    font-size: 3vh;
+    margin-top: -15px;
+}
+
+.close {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
+    border: 0;
+    margin: 5px;
 }
 
-.containermodal>button {
-    max-width: 10%;
-    max-height: 5%;
-    font-size: 0;
+.close button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3%;
     border: 0;
-    margin: 3% 0% 2% 87%;
     background-color: #f59a4f;
-    color: #f59a4f;
+    color: #f5ebdf;
     border-radius: 5px;
 }
 
-.containermodal>button svg {
-    color: aliceblue;
-    fill: aliceblue;
-    min-width: 60%;
-
-}
-
-.containermodal h2 {
-    display: flex;
-    justify-content: center;
-    padding: 1%;
-
-}
 
 .row form {
     display: flex;
     flex-direction: column;
-    padding: 3%;
+    padding: 1%;
 }
 
+.row form select {
+    min-width: 100%;
+    min-height: 45px;
+    font-size: 2vh;
+}
+
+.status {
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    margin: 1%;
+
+}
+
+.status input {
+    margin: 5px;
+}
+
+.row form label {
+    margin-bottom: .1em;
+}
+
+.row form textarea {
+    min-width: 100%;
+    height: 70px;
+    margin-bottom: 1%;
+    font-size: 12px;
+}
+
+.row form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    width: 20%;
+    height: 35px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #f59a4f;
+    font-size: 1.2em;
+    padding: 3px;
+    transition: transform 0.8ms step-start;
+    color: #ffffff;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    outline: auto;
+}
+
+/* 
 .row select {
     display: flex;
     flex-direction: column;
@@ -56,17 +100,6 @@
 .row select option{
    font-size: 12px;
 }
-.status{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 1%;
-}
-.row form label{
-    margin-bottom: 1%;
-}
-.row form textarea{
-    height: 70px;
-    margin-bottom: 1%;
-    font-size: 12px;
-}
+
+
+ */

@@ -1,26 +1,47 @@
+.container-client {
+    display: flex;
+    border: 1px solid #f59a4f;
+    background-color: #f5ebdf;
+    border-radius: 10px;
+    padding: .8em;
+    margin-top: 1em;
+    align-items: center
+  }
+.form-client {
+    display: flex;
+    flex-direction: column;
+    min-width: 100%;
+  }
+  
+  
+  .form-client input {
+    margin-bottom: .5em;
+    font-size: 2vh;
+    padding: .7em;
+    border-radius: 5px;
+    border: 0;
+    height: 55px;
+    border: 1px solid #f59a4f;
+   
+  }
 .btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    padding: 5%;
+    align-self: flex-end;
+    width: 20%;
+    height: 35px;
+    border: 0;
+    border-radius: 5px;
     background-color: #f59a4f;
-    border: none;
+    font-size: 1.2em;
+    padding: 7px;
+    transition: transform 0.8ms step-start;
+    color: #ffffff;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    border: 1px solid #f59a4f;
-    color: #ffffff;
-    margin-left: 20%;
-    transition: ease-in-out .5s;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
     outline: auto;
-
-
-
 }
 
 .btn:hover {

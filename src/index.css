@@ -260,7 +260,7 @@ a:hover {
 
 /*Title*/
 .content {
-  margin-right: 200px;
+  width: calc(100% - 200px);
   padding: 18px 15px;
 }
 

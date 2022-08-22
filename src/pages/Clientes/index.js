@@ -2,7 +2,7 @@
 import Header from "../../Components/Header";
 import Title from "../../Components/Title"
 import { FiUser, FiUpload } from 'react-icons/fi';
-import { writerUserFirestore } from "../../controller/ClientesController";
+import { writerClientesFirestore } from "../../controller/ClientesController";
 import { useContext, useEffect, useState } from 'react';
 import './style.css'
 import { toast } from "react-toastify";
@@ -11,12 +11,11 @@ import { useForm } from 'react-hook-form';
 /* import { AuthContext } from '../../context/auth'; */
 
 export default function Clientes() {
-    const [clearForm, setClearForm] = useState(false)
     const { register, handleSubmit, reset, formState: { isSubmitSuccessful, errors } } = useForm({ mode: "onBlur" });
     /*  const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl) */
 
     const onFormSubmit = async data => {
-        writerUserFirestore(data).then((result) => {
+        writerClientesFirestore(data).then((result) => {
             console.log(result.id)
             reset();
             toast.success('Cliente cadastrado')
@@ -59,8 +58,8 @@ export default function Clientes() {
                 <Title name="Novo Cliente">
                     <FiUser size={25} />
                 </Title>
-                <div className='container-profile'>
-                    <form className='form-profile' onSubmit={handleSubmit(onFormSubmit, isSubmitSuccessful, onErrors)} >
+                <div className='container-client'>
+                    <form className='form-client' onSubmit={handleSubmit(onFormSubmit, isSubmitSuccessful, onErrors)} >
                         {/*  <label className='label-avatar'>
                             <span>
                                 <FiUpload color='#FFF' size={25} />
@@ -79,7 +78,7 @@ export default function Clientes() {
                         <small className='text-danger'>{errors?.email && errors.email.message}</small>
 
 
-                        <button type="submit" className="btn">Cadastrar</button>
+                        <button type="submit" className="btn">Salvar</button>
                     </form>
                 </div>
             </div>
