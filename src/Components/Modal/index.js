@@ -2,33 +2,68 @@ import './style.css'
 import { FiX } from 'react-icons/fi'
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { getClientes } from '../../controller/ClientesController';
+//Firebase Connectionn
+import { db } from '../../services/firebase';
+import { collection, onSnapshot, } from 'firebase/firestore';
+import { writerTaskFirestore } from '../../controller/taskController'
+import { Data } from '../../utils/DateUtils';
 
-export default function Modal({ conteudo, close }) {
-    const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur" });
+import { useContext } from 'react'
+import { AuthContext } from '../../context/auth'
+import { toast } from "react-toastify";
+export default function Modal({ close, idTask }) {
+    
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({ mode: "onBlur" });
+    const { user } = useContext(AuthContext);
     const onFormSubmit = data => {
-        console.log(data)
+        const a = Object.assign(user, data)
+        //  console.log(a)
+        writerTaskFirestore(a).then((result) => {
+            console.log(result.id)
+            reset();
+            toast.success('Task cadastrada')
+        }).catch((err) => {
+            toast.success('Task não cadastrada')
+        });
 
     };
     const onErrors = (errors) => { };
     const registrerOptions = {
         cliente: { required: "Cliente é necessario" },
-        tipo: { required: "Tipo é necessario" },
-        radio: { required: "Escolha status atendimento" },
-        descricao: ''
+        assunto: { required: "Tipo é necessario" },
+        status: { required: "Escolha status atendimento" },
+        descricao: '',
+        id: '',
     }
-    //  const [clientes, setClientes] = useState([]);
-    const dispatch = useDispatch();
+    const [allClientes, setAllClientes] = useState([]);
+    const [load, setLoad] = useState(false);
+    const [dateAtual, setDate] = useState(false);
+    const dbInstance = collection(db, 'clientes');
 
     useEffect(() => {
-        dispatch(getClientes());
+        setLoad(true)
+        onSnapshot(dbInstance, (doc) => {
+            const data = doc.docs.map((doc) => doc);
+            let dados = [];
+            data.forEach((cliente) => {
+                dados.push({
+                    id: cliente.id,
+                    nomeFantasia: cliente.data().nomeFantasia
+                })
+            })
+            if (dados.length > 0) {
+                setAllClientes(dados)
+                setDate(Data())
+                setLoad(false);
+                return;
+            }
+            setLoad(false)
+        });
     }, [])
-    const cliente = useSelector(state => state.clientes);
-    console.log(cliente)
-    const { entities, loading } = cliente;
-    console.log({ entities, loading })
-
+    useEffect(()=>{
+        console.log("E",idTask)
+        
+    },[idTask])
     return (
         <div className='modal'>
             <div className="close">
@@ -40,41 +75,38 @@ export default function Modal({ conteudo, close }) {
             <div className='row'>
                 <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
                     <label>Cliente</label>
-                    <select {...register('cliente', registrerOptions.cliente)}>
-                        <option value="">
-                            Selecione um cliente
-                        </option>
-                        {loading ? 'Carregando' : entities?.map(cliente => (
-                            <>
-                                <option key={cliente?.id}>{cliente?.nomeFantasia}</option>
-                            </>
-                        ))}
-
-
+                    <select {...register('cliente', registrerOptions.cliente)} >
+                        <option value="">Selecione um cliente</option>
+                        {load ? <option>Carregando...</option> : allClientes?.map((cliente) =>
+                            <option key={cliente.id} name="cliente" value={cliente.nomeFantasia} >{cliente.nomeFantasia}</option>
+                        )}
                     </select>
                     <small>{errors?.cliente && errors.cliente.message}</small>
-                    <label>Tipo</label>
-                    <select {...register('tipo', registrerOptions.tipo)}>
+                    <label>Assunto</label>
+                    <select {...register('assunto', registrerOptions.assunto)}>
                         <option value="">Selecione tipo da tarefa</option>
-                        <option value="Tester">Suporte</option>
-                        <option value="Desenvolvimmento">Desenvolvimmento</option>
-                        <option value="Requisito">Requisito</option>
+                        <option value="requisito">Requisito</option>
+                        <option value="desenvolvimento">Desenvolvimento</option>
+                        <option value="tester">Tester</option>
+                        <option value="deploy">Deploy</option>
                     </select>
-                    <small>{errors?.tipo && errors.tipo.message}</small>
+                    <small>{errors?.assunto && errors.assunto.message}</small>
                     <label> Status</label>
                     <div className='status'>
-                        <input type="radio" name="aberto-progresso-atendido" value="aberto" {...register('radio', registrerOptions.radio)} checked={true} />
-                        <span>Em aberto</span>
-                        <input type="radio" name="aberto-progresso-atendido" value="progresso" {...register('radio', registrerOptions.radio)} />
-                        <span>Progresso</span>
-                        <input type="radio" name="aberto-progresso-atendido" value="atendido" {...register('radio', registrerOptions.radio)} />
-                        <span>Atendido</span>
+                        <input type="radio" name="aberto-fazendo-atendido" value="afazer" {...register('status', registrerOptions.status)} checked={true} />
+                        <span>A fazer</span>
+                        <input type="radio" name="aberto-fazendo-atendido" value="fazendo" {...register('status', registrerOptions.status)} />
+                        <span>Fazendo</span>
+                        <input type="radio" name="aberto-fazendo-atendido" value="feito" {...register('status', registrerOptions.status)} />
+                        <span>Feito</span>
                     </div>
                     <small>{errors?.radio && errors.radio.message}</small>
                     <label>Descrição</label>
-                    <textarea type="text" placeholder="Descrição do atendimento" {...register('descricao', registrerOptions.descricao)} >
+                    <textarea type="text" placeholder="Descrição do atendimento" name="descricao" {...register('descricao', registrerOptions.descricao)} >
 
                     </textarea>
+                    <label>Data abertura task: {dateAtual}</label>
+
                     <button type="submit" className="btn">Salvar</button>
                 </form>
             </div >

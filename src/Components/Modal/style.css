@@ -1,12 +1,21 @@
 .modal {
-    border-top-left-radius: 10px;
+    border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: #f5ebdf;
     width: calc(100% - 228px);
     border: 1px solid #f59a4f;
     height: 440px;
-    margin-left: 13px;
+    margin: 35px auto;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 99;
+    max-width: 30em;
+    
+
     
 }
 

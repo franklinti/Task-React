@@ -1,8 +1,8 @@
 
 //Firebase Connectionn
-import { auth, db } from '../../services/firebase';
-import { collection, getDocs, updateDoc, doc, setDoc, addDoc, onSnapshot, } from 'firebase/firestore';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {  db } from '../../services/firebase';
+import { collection, addDoc,} from 'firebase/firestore';
+/* import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'; */
 
 export async function writerClientesFirestore(user) {
     const dbInstance = collection(db, 'clientes');
@@ -10,7 +10,7 @@ export async function writerClientesFirestore(user) {
     let userCreate = await addDoc(dbInstance, user);
     return userCreate;
 }
-const initialState = {
+/* const initialState = {
     entities: [],
     loading: false,
 }
@@ -18,12 +18,12 @@ const dbInstance = collection(db, 'clientes');
 let allClientes = [];
 export const getClientes = createAsyncThunk("getClientes", async (payload, { rejectWithValue, getState, dispatch }) => {
     onSnapshot(dbInstance, (doc) => {
-        /*  doc.forEach((clientes) => {
+          doc.forEach((clientes) => {
              allClientes.push({
                  id: clientes.id,
              })
              console.log(1, allClientes)
-         }) */
+         }) 
         const data = doc.docs.map((doc) => doc.data());
         allClientes = data;
         return allClientes;
@@ -50,4 +50,4 @@ export const clientesSlice = createSlice({
         },
     },
 })
-export default clientesSlice.reducer;
+export default clientesSlice.reducer; */

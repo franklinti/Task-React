@@ -2,7 +2,7 @@
 import Header from "../../Components/Header";
 import Title from "../../Components/Title"
 import { FiUser, FiUpload } from 'react-icons/fi';
-import { writerClientesFirestore } from "../../controller/ClientesController";
+import { writerClientesFirestore } from "../../controller/clientesController";
 import { useContext, useEffect, useState } from 'react';
 import './style.css'
 import { toast } from "react-toastify";
@@ -21,7 +21,7 @@ export default function Clientes() {
             toast.success('Cliente cadastrado')
         }).catch((err) => {
             toast.success('Cliente não cadastrado')
-        });;
+        });
 
     };
     const onErrors = (errors) => { console.log(errors) };

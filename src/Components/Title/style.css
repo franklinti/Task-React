@@ -11,5 +11,18 @@
 .title span {
     margin-left: 1em;
     font-size: 1.5em;
-    
+}
+
+.title span+div {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.title div button {
+    border: 0;background-color: #f59a4f;
+    border-radius: 5px;
+    color: #f5ebdf;
+    min-width: 20%;
+    min-height: 20%;
 }

@@ -10,16 +10,13 @@ import store from './store';
 
 function App() {
   return (
-    <Provider store={store}>
+    
       <AuthProvider>
         <BrowserRouter>
           <ToastContainer autoClose={2000} />
           <Routes />
         </BrowserRouter>
       </AuthProvider>
-    </Provider>
-
-
   );
 }
 
