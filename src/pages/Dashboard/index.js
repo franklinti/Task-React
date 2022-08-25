@@ -1,6 +1,6 @@
 import Header from "../../Components/Header";
 import Title from "../../Components/Title";
-import { FiClipboard, FiPlus, FiSearch, FiEdit3 } from 'react-icons/fi'
+import { FiClipboard, FiEye, FiEdit3 } from 'react-icons/fi'
 import { Link } from "react-router-dom";
 import './style.css'
 import { useEffect, useState } from 'react';
@@ -20,7 +20,7 @@ function Dashboard() {
     const [showModal, setShowModal] = useState(false)
     const [editTask, setEditTask] = useState({})
     const [nameModal, setNameModal] = useState('')
-    function togglePostModal(task,name) {
+    function togglePostModal(task, name) {
         setNameModal(name)
         setEditTask(task);
         setShowModal(!showModal);
@@ -54,7 +54,6 @@ function Dashboard() {
     }, [])
 
     function isAberto(data) {
-
         return data.filter((data) => data.status === 'afazer');
     }
     function isFazendo(data) {
@@ -71,94 +70,158 @@ function Dashboard() {
             <div className="content">
                 <Title name="Tasks" >
                     <FiClipboard size={25} />
-                    <button className="action" onClick={()=>togglePostModal('','Nova Task')}><FiEdit3 size={25} /></button>
                 </Title>
+                <div className="btneditright">
+                    <button onClick={() => togglePostModal('', 'Nova Task')}><FiEdit3 size={25} /></button>
+                </div>
                 <div className="griddashboard">
-                    <div className="fazer" >
-                        <label>A fazer</label>
-                        {taskOpen?.map((tasks, index) => {
-                            return (
-                                <div className="card" key={index}>
-                                    <div className="cardtitle">
-                                        <FiClipboard size={25} />
-                                        <label>Task</label>
-                                        <span className="badge" style={{ backgroundColor: tasks.status === 'afazer' ? '#47f180' : '#999' }}>{tasks.status}</span>
-                                    </div>
+                    {taskOpen.length === 0 ?
+                        <div>
+                            <label>A fazer</label><br></br>
+                            <div className="card" >
+                                <div className="cardtitle">
+                                    <FiEye size={25} />
+                                    <label>Task</label>
 
-                                    <div className="containercard">
-                                        <span>Cliente:{tasks.cliente}</span>
-                                        <span>Assunto:{tasks.assunto}</span>
-                                        <span>Descrição:{tasks.descricao}</span>
-                                        <span>Cliente:{tasks.solicitante}</span>
-                                        <span>Data:{tasks.data}</span>
-                                        <span>Id:{tasks.id}</span>
-                                        <div className="linha"></div>
-                                        <div className="btncard">
-                                            {/*  <button className="action"><FiSearch size={25} /></button> */}
-                                            <button className="action" onClick={() => togglePostModal(tasks,'Editar')}><FiEdit3 size={25} /></button>
+                                </div>
+
+                                <div className="cardtitle">
+                                    <label>Comercial, e os projetos ?</label>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        <div className="fazer" >
+                            <label>A fazer</label>
+                            {taskOpen?.map((tasks, index) => {
+                                return (
+                                    <div className="card" key={index}>
+                                        <div className="cardtitle">
+                                            <FiClipboard size={25} />
+                                            <label>Task</label>
+                                            <span className="badge" style={{ backgroundColor: tasks.status === 'afazer' ? '#47f180' : '#999' }}>{tasks.status}</span>
+                                        </div>
+
+                                        <div className="containercard">
+                                            <span>Cliente:{tasks.cliente}</span>
+                                            <span>Assunto:{tasks.assunto}</span>
+                                            <span>Descrição:{tasks.descricao}</span>
+                                            <span>Cliente:{tasks.solicitante}</span>
+                                            <span>Data:{tasks.data}</span>
+                                            <span>Id:{tasks.id}</span>
+                                            <div className="linha"></div>
+                                            <div className="btncard">
+                                                {/*  <button className="action"><FiSearch size={25} /></button> */}
+                                                <button className="action" onClick={() => togglePostModal(tasks, 'Editar')}><FiEdit3 size={25} /></button>
+                                            </div>
                                         </div>
                                     </div>
+                                )
+                            })}
+
+                        </div>
+                    }
+
+                    {taskFazendo.length === 0 ?
+                        <div>
+                            <label>Fazendo</label><br></br>
+                            <div className="card" >
+                                <div className="cardtitle">
+                                    <FiEye size={25} />
+                                    <label>Task</label>
+
                                 </div>
-                            )
-                        })}
 
-                    </div>
-                    <div className="fazer">
-                        <label>Fazendo</label>
-                        {taskFazendo?.map((tasks, index) => {
-                            return (
-                                <div className="card" key={index}>
-                                    <div className="cardtitle">
-                                        <FiClipboard size={25} />
-                                        <label>Task</label>
-                                        <span className="badge" style={{ backgroundColor: tasks.status === 'afazer' ? '#47f180' : '#999' }}>{tasks.status}</span>
-                                    </div>
+                                <div className="cardtitle">
+                                    <label>Alguem está trabalhando?</label>
 
-                                    <div className="containercard">
-                                    <span>Cliente:{tasks.cliente}</span>
-                                        <span>Assunto:{tasks.assunto}</span>
-                                        <span>Descrição:{tasks.descricao}</span>
-                                        <span>Cliente:{tasks.solicitante}</span>
-                                        <span>Data:{tasks.data}</span>
-                                        <span>Id:{tasks.id}</span>
-                                        <div className="linha"></div>
-                                        <div className="btncard">
-                                            {/*  <button className="action"><FiSearch size={25} /></button> */}
-                                            <button className="action" onClick={() => togglePostModal(tasks,'Editar')}><FiEdit3 size={25} /></button>
+
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        <div className="fazer">
+                            <label>Fazendo</label>
+                            {taskFazendo?.map((tasks, index) => {
+                                return (
+                                    <div className="card" key={index}>
+                                        <div className="cardtitle">
+                                            <FiClipboard size={25} />
+                                            <label>Task</label>
+                                            <span className="badge" style={{ backgroundColor: tasks.status === 'afazer' ? '#47f180' : '#999' }}>{tasks.status}</span>
+                                        </div>
+
+                                        <div className="containercard">
+                                            <span>Cliente:{tasks.cliente}</span>
+                                            <span>Assunto:{tasks.assunto}</span>
+                                            <span>Descrição:{tasks.descricao}</span>
+                                            <span>Cliente:{tasks.solicitante}</span>
+                                            <span>Data:{tasks.data}</span>
+                                            <span>Id:{tasks.id}</span>
+                                            <div className="linha"></div>
+                                            <div className="btncard">
+                                                {/*  <button className="action"><FiSearch size={25} /></button> */}
+                                                <button className="action" onClick={() => togglePostModal(tasks, 'Editar')}><FiEdit3 size={25} /></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                    <div className="fazer">
-                        <label>Feito</label>
-                        {taskFeito?.map((tasks, index) => {
-                            return (
-                                <div className="card" key={index}>
-                                    <div className="cardtitle">
-                                        <FiClipboard size={25} />
-                                        <label>Task</label>
-                                        <span className="badge" style={{ backgroundColor: tasks.status === 'feito' ? '#ae0d0db4' : '#999' }}>{tasks.status}</span>
-                                    </div>
+                                )
+                            })}
+                        </div>
 
-                                    <div className="containercard">
-                                    <span>Cliente:{tasks.cliente}</span>
-                                        <span>Assunto:{tasks.assunto}</span>
-                                        <span>Descrição:{tasks.descricao}</span>
-                                        <span>Cliente:{tasks.solicitante}</span>
-                                        <span>Data:{tasks.data}</span>
-                                        <span>Id:{tasks.id}</span>
-                                        <div className="linha"></div>
-                                        <div className="btncard">
-                                            {/* <button className="action"><FiSearch size={25} /></button> */}
-                                            <button className="action" onClick={() => togglePostModal(tasks,'Editar')}><FiEdit3 size={25} /></button>
+                    }
+                    {taskFeito.length === 0 ?
+                        <div>
+                            <label>Feito</label><br></br>
+                            <div className="card" >
+                                <div className="cardtitle">
+                                    <FiEye size={25} />
+                                    <label>Task</label>
+
+                                </div>
+
+                                <div className="cardtitle">
+                                    <label>Oba! : ) vamos faturar ?</label>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        <div className="fazer">
+                            <label>Feito</label>
+                            {taskFeito?.map((tasks, index) => {
+                                return (
+                                    <div className="card" key={index}>
+                                        <div className="cardtitle">
+                                            <FiClipboard size={25} />
+                                            <label>Task</label>
+                                            <span className="badge" style={{ backgroundColor: tasks.status === 'feito' ? '#ae0d0db4' : '#999' }}>{tasks.status}</span>
+                                        </div>
+
+                                        <div className="containercard">
+                                            <span>Cliente:{tasks.cliente}</span>
+                                            <span>Assunto:{tasks.assunto}</span>
+                                            <span>Descrição:{tasks.descricao}</span>
+                                            <span>Cliente:{tasks.solicitante}</span>
+                                            <span>Data:{tasks.data}</span>
+                                            <span>Id:{tasks.id}</span>
+                                            <div className="linha"></div>
+                                            <div className="btncard">
+                                                {/* <button className="action"><FiSearch size={25} /></button> */}
+                                                <button className="action" onClick={() => togglePostModal(tasks, 'Editar')}><FiEdit3 size={25} /></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        })}
-                    </div>
+                                )
+                            })}
+                        </div>
+
+
+                    }
+
                 </div>
 
                 {/* loadTask ?
@@ -217,8 +280,8 @@ function Dashboard() {
                 showModal && (
                     <Modal
                         task={editTask}
-                        close={togglePostModal} 
-                        name={nameModal}/>
+                        close={togglePostModal}
+                        name={nameModal} />
                 )
             }
         </div >

@@ -1,7 +1,6 @@
 .title {
     display: flex;
     align-items: center;
-    flex-direction: row;
     border-radius: 5px;
     border: 1px solid #f59a4f;
     background-color: #f5ebdf;
@@ -17,13 +16,26 @@
     position: relative;
     margin-left: 80% auto;
 
-    
+
 }
 
-/* .title div button {
-    border: 0;background-color: #f59a4f;
+.btneditright {
+    border: 0;
     border-radius: 5px;
     color: #f5ebdf;
-    min-width: 20%;
-    min-height: 20%;
-} */
+    margin-left: 92%;
+    margin-top: -40px;
+    margin-bottom: 10px
+   
+   
+}
+.btneditright button {
+    border: 0;
+    border-radius: 5px;
+    color:aliceblue;
+    background-color: #f59a4f;
+    min-width: 35%;
+    height: 15%;
+    
+
+}

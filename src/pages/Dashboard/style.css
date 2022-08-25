@@ -128,39 +128,35 @@ table tbody tr td button:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 1%;
+    margin: 1px auto;
 }
 
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 4px;
+    transition: 0.3s;
+    background-color: #f5ebdf;
+    font-size: clamp(0.8em, 0.7em + 0.7vw, 1.2em);
+    font-family: cursive;
+}
 
-
-.fazer {
+.containercard {
+    color: #222020;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
     flex-direction: column;
-    border: 1px solid #f59a4f;
-    background-color: #f5ebdf;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    margin-top: .5em;
-    min-width: 31.99%;
-    min-height: 400px;
-    padding: .2%;
-    margin: 1%;
+    padding: 1%;
 
 }
+
 .fazer>label {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2.2vh;
     font-family: cursive;
-    padding: 5px;
+    padding: 2px;
     border-radius: 4px;
-}
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 4px;
-    transition: 0.3s;
 }
 
 .cardtitle {
@@ -169,56 +165,32 @@ table tbody tr td button:hover {
     justify-content: space-between;
 }
 
-.cardtitle label {
-    font-family: cursive;
-    font-size: 3.0vh;
-}
-
 .badge {
     border-radius: 5px;
     color: #ffffff;
-    padding: 2%;
-    font-size: 2.0vh;
-    text-transform: uppercase;
-    font-family: cursive;
-}
+    padding: 1%;
 
+}
 .card:hover {
     box-shadow: 0 8px 16px 0 #f59a4f;
 }
-
-.containercard {
-    color: #222020;
-    padding: 1%;
-    margin: 1%;
-    font-size: 2vh;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    display: inline-flex;
-    flex-direction: column;
-    width: 95%;
- 
-  
-}
-
 .linha {
     margin-top: 5px;
+
     height: 1px;
     background-color: #d48729;
-    border: 1px solid #f5ebdf;
+    border: 1px solid #d48729;
+    
 }
-
 .btncard {
     display: flex;
     justify-content: flex-end;
     padding: 1px;
     margin: .1em;
 }
-
 .btncard button {
     display: flex;
     justify-content: flex-end;
-    min-width: 5%;
-    min-height: 5%;
     padding: 1px;
     margin: 4px 3px 0px 1px;
     background-color: #f59a4f;
@@ -228,12 +200,15 @@ table tbody tr td button:hover {
     border-radius: 5px;
     border: 1px solid #fdfdfd;
 }
-
 .btncard button:hover {
-
     background-color: #ffffff;
     transition: ease-in-out .5s;
     color: #f59a4f;
     border-radius: 5px;
     border: 1px solid #fdfdfd;
+}
+
+.fazer {
+    display: block;
+    min-width: 31.99%;
 }

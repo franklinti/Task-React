@@ -5,26 +5,35 @@ import { useEffect, useState } from 'react';
 //Firebase Connectionn
 import { db } from '../../services/firebase';
 import { collection, onSnapshot, } from 'firebase/firestore';
-import { writerTaskFirestore } from '../../controller/taskController'
+import { writerTaskFirestore, updateTaskFirestore } from '../../controller/taskController'
 import { Data } from '../../utils/DateUtils';
 
 import { useContext } from 'react'
 import { AuthContext } from '../../context/auth'
 import { toast } from "react-toastify";
 export default function Modal({ close, task, name }) {
-    console.log(name)
     const { register, handleSubmit, reset, formState: { errors } } = useForm({ mode: "onBlur" });
     const { user } = useContext(AuthContext);
     const onFormSubmit = data => {
-        const a = Object.assign(user, data)
-        //  console.log(a)
-        writerTaskFirestore(a).then((result) => {
-            console.log(result.id)
-            reset();
-            toast.success('Task cadastrada')
-        }).catch((err) => {
-            toast.success('Task não cadastrada')
-        });
+
+        if (data.id !== undefined) {
+            updateTaskFirestore(data).then((result) => {
+                console.log(result)
+
+                toast.success('Task editada');
+            }).catch((err) => {
+                toast.success('Task não editada')
+            });
+        } else {
+            const a = Object.assign(user, data)
+            writerTaskFirestore(a).then((result) => {
+                console.log(result.id)
+                reset();
+                toast.success('Task cadastrada')
+            }).catch((err) => {
+                toast.success('Task não cadastrada')
+            });
+        }
 
     };
     const onErrors = (errors) => { };
@@ -44,6 +53,12 @@ export default function Modal({ close, task, name }) {
         desenvolvimento: false,
         deploy: false,
     });
+    const [checkedItem, setCheckedItem] = useState({
+        afazer: '',
+        fazendo: '',
+        feito: '',
+    });
+    const [textAreaItem, setTextAreaItem] = useState(true);
     const dbInstance = collection(db, 'clientes');
 
     useEffect(() => {
@@ -67,23 +82,54 @@ export default function Modal({ close, task, name }) {
         });
     }, [])
     useEffect(() => {
-        hiddenAssunto()
+        hiddenAssunto();
+    }, [])
+    useEffect(() => {
+        checkedStatus();
+    }, [])
 
-    }, [task])
+
+
     function hiddenAssunto() {
         if (task.assunto === 'requisito') {
-            setHiddenItem({ requisito: true, tester: false })
+            setHiddenItem({ requisito: true })
+            return;
         }
         if (task.assunto === 'tester') {
             setHiddenItem({ tester: true })
+            return;
         }
         if (task.assunto === 'desenvolvimento') {
             setHiddenItem({ desenvolvimento: true })
+            return;
         }
         if (task.assunto === 'deploy') {
             setHiddenItem({ deploy: true })
+            return;
         }
+        return;
     }
+    function checkedStatus() {
+
+        if (task.status === 'afazer') {
+            setCheckedItem({ afazer: true, fazendo: false, feito: false, })
+            return;
+        }
+        if (task.status === 'fazendo') {
+            setCheckedItem({ fazendo: true, afazer: false, feito: false, })
+            return;
+        }
+        if (task.status === "feito") {
+            setCheckedItem({ feito: true, fazendo: false, afazer: false, })
+            return;
+        }
+        return;
+
+    }
+    function setV(e) {
+        setTextAreaItem(e.target.value)
+    }
+    //  console.log(task.status)
     function newTask() {
         return (
             <div className='modal'>
@@ -134,9 +180,9 @@ export default function Modal({ close, task, name }) {
             </div >
         )
     }
+
     function updateTask() {
-        console.log(task.assunto)
-        console.log(hiddenItem.requisito)
+        console.log(close)
         return (
             <div className='modal'>
                 <div className="close">
@@ -155,26 +201,27 @@ export default function Modal({ close, task, name }) {
                         <label>Assunto</label>
                         <select {...register('assunto', registrerOptions.assunto)}>
                             <option value={task.assunto}>{task.assunto}</option>
-                            <option value="requisito" hidden={hiddenItem.requisito} >Requisito</option>
-                            <option value="desenvolvimento" hidden={hiddenItem.desenvolvimento}>Desenvolvimento</option>
-                            <option value="tester" hidden={hiddenItem.tester}>Tester</option>
-                            <option value="deploy" hidden={hiddenItem.deploy}>Deploy</option>
+                            <option value="Requisito" hidden={hiddenItem.requisito} >Requisito</option>
+                            <option value="Desenvolvimento" hidden={hiddenItem.desenvolvimento}>Desenvolvimento</option>
+                            <option value="Tester" hidden={hiddenItem.tester}>Tester</option>
+                            <option value="Deploy" hidden={hiddenItem.deploy}>Deploy</option>
                         </select>
                         <small>{errors?.assunto && errors.assunto.message}</small>
                         <label> Status</label>
                         <div className='status'>
-                            <input type="radio" name="aberto-fazendo-atendido" value={task.status} {...register('status', registrerOptions.status)} checked={task.status === 'afazer'} />
+                            <input type="radio" name="aberto-fazendo-atendido" checked={checkedItem.afazer} value="afazer" {...register('status', registrerOptions.status)} onChange={() => setCheckedItem({ afazer: true, fazendo: false, feito: false })} />
                             <span>A fazer</span>
-                            <input type="radio" name="aberto-fazendo-atendido" value={task.status}  {...register('status', registrerOptions.status)} checked={task.status === 'fazendo'} />
+                            <input type="radio" name="aberto-fazendo-atendido" checked={checkedItem.fazendo} value="fazendo" {...register('status', registrerOptions.status)} onChange={() => setCheckedItem({ fazendo: true, afazer: false, feito: false })} />
                             <span>Fazendo</span>
-                            <input type="radio" name="aberto-fazendo-atendido" value={task.status}  {...register('status', registrerOptions.status)} checked={task.status === 'feito'} />
+                            <input type="radio" name="aberto-fazendo-atendido" checked={checkedItem.feito} value="feito" {...register('status', registrerOptions.status)} onChange={() => setCheckedItem({ feito: true, afazer: false, fazendo: false })} />
                             <span>Feito</span>
                         </div>
                         <small>{errors?.radio && errors.radio.message}</small>
                         <label>Descrição</label>
-                        <textarea type="text" placeholder="Descrição do atendimento" name="descricao" value={task.descricao}  {...register('descricao', registrerOptions.descricao)} >
+                        <textarea type="text" name="descricao" placeholder={task.descricao} onChange={(e) => setV(e)} {...register('descricao', registrerOptions.descricao)}>
 
                         </textarea>
+                        <input type="text" name="id" value={task?.id} {...register('id', registrerOptions.id)} />
                         <label>Data abertura task: {dateAtual}</label>
 
                         <button type="submit" className="btn">Salvar</button>

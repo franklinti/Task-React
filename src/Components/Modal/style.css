@@ -14,9 +14,9 @@
     left: 0;
     z-index: 99;
     max-width: 30em;
-    
 
-    
+
+
 }
 
 .modal h2 {
@@ -77,6 +77,10 @@
     height: 70px;
     margin-bottom: 1%;
     font-size: 12px;
+}
+
+.row form>input {
+    display: none;
 }
 
 .row form button {

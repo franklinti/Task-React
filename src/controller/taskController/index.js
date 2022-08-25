@@ -1,6 +1,6 @@
 //Firebase Connectionn
 import { db } from '../../services/firebase';
-import { collection, addDoc, } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc, } from 'firebase/firestore';
 
 
 
@@ -16,6 +16,20 @@ export async function writerTaskFirestore(task) {
         status: task.status,
         descricao: task.descricao,
         solicitante: task.nome
+    });
+    return taskCreate;
+}
+export async function updateTaskFirestore(task) {
+
+    const dbInstance = collection(db, 'task');
+    const docRef = doc(dbInstance, task.id)
+    let taskCreate = await updateDoc(docRef, {
+        cliente: task.cliente,
+        assunto: task.assunto,
+        status: task.status,
+        descricao: task.descricao,
+        created: new Date(),
+       
     });
     return taskCreate;
 }
