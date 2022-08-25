@@ -1,4 +1,4 @@
-.dashboard {
+/* .dashboard {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,67 +114,53 @@ table tbody tr td>button {
 table tbody tr td button+button {
     background-color: #f59a4f;
     border-radius: 5px;
-}
+} */
 
-.badge {
-    /* background-color: #47f180; */
-    border-radius: 5px;
-    color: #ffffff;
-    padding: 4%;
-    font-size: 2.0vh;
-    font-weight: bolder;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-
-}
+/* 
 
 table tbody tr td button:hover {
     background-color: #ffffff;
     border-radius: 5px;
     color: #f59a4f;
-}
+} */
 
 .griddashboard {
     display: flex;
     flex-direction: row;
-    border: 1px solid #f59a4f;
+    justify-content: space-around;
     margin-top: 1%;
 }
+
+
 
 .fazer {
     display: flex;
     flex-direction: column;
-    align-items: center;
     border: 1px solid #f59a4f;
     background-color: #f5ebdf;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: .5em;
     margin-top: .5em;
-    width: 27em;
+    min-width: 31.99%;
     min-height: 400px;
-    padding: 4px;
-    margin: 1% auto;
+    padding: .2%;
+    margin: 1%;
 
 }
-
-.fazer label {
-    margin-bottom: 1%;
+.fazer>label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2vh;
+    font-family: cursive;
+    padding: 5px;
+    border-radius: 4px;
 }
-
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 4px;
     transition: 0.3s;
-    min-width: 95%;
-    border-radius: 5px;
-    background-color: #f59a4f;;
-    margin: 5px auto;
-    display: flex;
-    flex-direction: column;
-    outline: auto;
-    border: none;
-    color: #ffffff;
 }
 
 .cardtitle {
@@ -183,31 +169,52 @@ table tbody tr td button:hover {
     justify-content: space-between;
 }
 
+.cardtitle label {
+    font-family: cursive;
+    font-size: 3.0vh;
+}
+
+.badge {
+    border-radius: 5px;
+    color: #ffffff;
+    padding: 2%;
+    font-size: 2.0vh;
+    text-transform: uppercase;
+    font-family: cursive;
+}
+
 .card:hover {
-    box-shadow: 0 8px 16px 0  #f59a4f;
+    box-shadow: 0 8px 16px 0 #f59a4f;
 }
 
 .containercard {
     color: #222020;
     padding: 1%;
     margin: 1%;
-    font-size: 1.2em;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    display: inline-flex;
+    flex-direction: column;
+    width: 95%;
+ 
+  
 }
-.btncard{
+
+.linha {
+    margin-top: 5px;
+    height: 1px;
+    background-color: #d48729;
+    border: 1px solid #f5ebdf;
+}
+
+.btncard {
     display: flex;
     justify-content: flex-end;
     padding: 1px;
-    margin: 1px;
+    margin: .1em;
 }
-.linha{ 
-    margin-top: 5px;
-    width: 99%;
-    height: 1px;
-    background-color: #f5ebdf;
-    border: 1px solid #f5ebdf;
-}
-.btncard button{
+
+.btncard button {
     display: flex;
     justify-content: flex-end;
     min-width: 5%;
@@ -221,8 +228,9 @@ table tbody tr td button:hover {
     border-radius: 5px;
     border: 1px solid #fdfdfd;
 }
-.btncard button:hover{
-   
+
+.btncard button:hover {
+
     background-color: #ffffff;
     transition: ease-in-out .5s;
     color: #f59a4f;

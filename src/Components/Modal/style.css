@@ -1,12 +1,12 @@
 .modal {
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     background-color: #f5ebdf;
     width: calc(100% - 228px);
     border: 1px solid #f59a4f;
     height: 440px;
-    margin: 35px auto;
+    margin: 7em auto;
     position: fixed;
     top: 0;
     bottom: 0;

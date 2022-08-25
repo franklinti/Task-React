@@ -19,8 +19,10 @@ function Dashboard() {
     const [loadTask, setLoadTask] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [editTask, setEditTask] = useState({})
-    function togglePostModal(id) {
-        setEditTask(id);
+    const [nameModal, setNameModal] = useState('')
+    function togglePostModal(task,name) {
+        setNameModal(name)
+        setEditTask(task);
         setShowModal(!showModal);
     }
     useEffect(() => {
@@ -34,6 +36,7 @@ function Dashboard() {
                     cliente: cliente.data().cliente,
                     assunto: cliente.data().assunto,
                     descricao: cliente.data().descricao,
+                    solicitante: cliente.data().solicitante,
                     status: cliente.data().status,
                     created: cliente.data().created,
                     data: format(cliente.data().created.toDate(), 'dd/MM/yyyy'),
@@ -68,7 +71,7 @@ function Dashboard() {
             <div className="content">
                 <Title name="Tasks" >
                     <FiClipboard size={25} />
-                    <button className="action" onClick={togglePostModal}><FiEdit3 size={25} /></button>
+                    <button className="action" onClick={()=>togglePostModal('','Nova Task')}><FiEdit3 size={25} /></button>
                 </Title>
                 <div className="griddashboard">
                     <div className="fazer" >
@@ -83,15 +86,16 @@ function Dashboard() {
                                     </div>
 
                                     <div className="containercard">
-                                        <h4>Cliente:{tasks.cliente}</h4>
-                                        <h6>Assunto:{tasks.assunto}</h6>
-                                        <h6>Descrição:{tasks.descricao}</h6>
-                                        <h6>Data:{tasks.data}</h6>
-                                        <h6>Id:{tasks.id}</h6>
+                                        <span>Cliente:{tasks.cliente}</span>
+                                        <span>Assunto:{tasks.assunto}</span>
+                                        <span>Descrição:{tasks.descricao}</span>
+                                        <span>Cliente:{tasks.solicitante}</span>
+                                        <span>Data:{tasks.data}</span>
+                                        <span>Id:{tasks.id}</span>
                                         <div className="linha"></div>
                                         <div className="btncard">
                                             {/*  <button className="action"><FiSearch size={25} /></button> */}
-                                            <button className="action" onClick={() => togglePostModal(tasks.id)}><FiEdit3 size={25} /></button>
+                                            <button className="action" onClick={() => togglePostModal(tasks,'Editar')}><FiEdit3 size={25} /></button>
                                         </div>
                                     </div>
                                 </div>
@@ -111,15 +115,16 @@ function Dashboard() {
                                     </div>
 
                                     <div className="containercard">
-                                        <h4>Cliente:{tasks.cliente}</h4>
-                                        <h6>Assunto:{tasks.assunto}</h6>
-                                        <h6>Descrição:{tasks.descricao}</h6>
-                                        <h6>Data:{tasks.data}</h6>
-                                        <h6>Id:{tasks.id}</h6>
+                                    <span>Cliente:{tasks.cliente}</span>
+                                        <span>Assunto:{tasks.assunto}</span>
+                                        <span>Descrição:{tasks.descricao}</span>
+                                        <span>Cliente:{tasks.solicitante}</span>
+                                        <span>Data:{tasks.data}</span>
+                                        <span>Id:{tasks.id}</span>
                                         <div className="linha"></div>
                                         <div className="btncard">
                                             {/*  <button className="action"><FiSearch size={25} /></button> */}
-                                            <button className="action" onClick={togglePostModal}><FiEdit3 size={25} /></button>
+                                            <button className="action" onClick={() => togglePostModal(tasks,'Editar')}><FiEdit3 size={25} /></button>
                                         </div>
                                     </div>
                                 </div>
@@ -138,15 +143,16 @@ function Dashboard() {
                                     </div>
 
                                     <div className="containercard">
-                                        <h4>Cliente:{tasks.cliente}</h4>
-                                        <h6>Assunto:{tasks.assunto}</h6>
-                                        <h6>Descrição:{tasks.descricao}</h6>
-                                        <h6>Data:{tasks.data}</h6>
-                                        <h6>Id:{tasks.id}</h6>
+                                    <span>Cliente:{tasks.cliente}</span>
+                                        <span>Assunto:{tasks.assunto}</span>
+                                        <span>Descrição:{tasks.descricao}</span>
+                                        <span>Cliente:{tasks.solicitante}</span>
+                                        <span>Data:{tasks.data}</span>
+                                        <span>Id:{tasks.id}</span>
                                         <div className="linha"></div>
                                         <div className="btncard">
                                             {/* <button className="action"><FiSearch size={25} /></button> */}
-                                            <button className="action" onClick={togglePostModal}><FiEdit3 size={25} /></button>
+                                            <button className="action" onClick={() => togglePostModal(tasks,'Editar')}><FiEdit3 size={25} /></button>
                                         </div>
                                     </div>
                                 </div>
@@ -210,8 +216,9 @@ function Dashboard() {
             {
                 showModal && (
                     <Modal
-                        idTask={editTask}
-                        close={togglePostModal} />
+                        task={editTask}
+                        close={togglePostModal} 
+                        name={nameModal}/>
                 )
             }
         </div >

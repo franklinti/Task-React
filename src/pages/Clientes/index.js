@@ -1,9 +1,8 @@
 
 import Header from "../../Components/Header";
 import Title from "../../Components/Title"
-import { FiUser, FiUpload } from 'react-icons/fi';
+import { FiUser, } from 'react-icons/fi';
 import { writerClientesFirestore } from "../../controller/clientesController";
-import { useContext, useEffect, useState } from 'react';
 import './style.css'
 import { toast } from "react-toastify";
 import { useForm } from 'react-hook-form';
