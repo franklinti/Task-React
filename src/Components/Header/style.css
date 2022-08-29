@@ -1,0 +1,112 @@
+.sidebar {
+    width: 200px;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+    overflow: none;
+    right: 5px;
+    margin-top: 15px;
+
+
+}
+
+.sidebar>div {
+    background: url('../../assets/logo256x256.png');
+    background-color: #f59a4f;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150px;
+    width: 200px;
+    max-width: 200px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 1px solid #f59a4f;
+    display: flex;
+    justify-content: flex-end;
+
+
+}
+
+.sidebar div img {
+    width: 100px;
+    min-width: 90px;
+    height: 100px;
+    min-height: 90px;
+    padding: .8em;
+    max-width: 100px;
+    border-radius: 50%;
+    -webkit-filter: drop-shadow(2px 3px 10px #f59a4f);
+    filter: drop-shadow(2px 3px 10px #f59a4f);
+    object-fit: cover;
+}
+
+.sidebar a {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 4%;
+    background-color: #f59a4f;
+    border: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 1px solid #f59a4f;
+    color: #ffffff;
+    margin: 5px;
+    transition: ease-in-out .5s;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    outline: auto;
+}
+
+.sidebar a+button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 4%;
+    background-color: #f59a4f;
+    border: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border: 1px solid #f59a4f;
+    color: #ffffff;
+    margin: 5px;
+    transition: ease-in-out .5s;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    outline: auto;
+    position: relative;
+}
+
+.sidebar a svg {
+    margin-left: 0.2em;
+}
+
+.sidebar button svg {
+    margin-left: 0.2em;
+}
+
+.sidebar a:hover {
+    background-color: #ffffff;
+    color: #f59a4f;
+    font-size: 16px;
+    font-weight: 600px;
+    fill: #f59a4f;
+}
+
+.sidebar a+button:hover {
+    background-color: #ffffff;
+    color: #f59a4f;
+    font-size: 16px;
+    font-weight: 600px;
+    fill: #f59a4f;
+}

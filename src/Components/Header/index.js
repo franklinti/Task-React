@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/auth'
 import avatar from '../../assets/avatar.png'
 import { Link } from 'react-router-dom'
 import { FiHome, FiUser, FiSettings, FiLogOut } from 'react-icons/fi'
-
+import './style.css'
 export default function Header() {
     const { user, signOut } = useContext(AuthContext);
 
