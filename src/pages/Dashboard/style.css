@@ -128,7 +128,6 @@ table tbody tr td button:hover {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin: 1px auto;
 }
 
 .card {
@@ -137,7 +136,8 @@ table tbody tr td button:hover {
     transition: 0.3s;
     background-color: #f5ebdf;
     font-size: clamp(0.8em, 0.7em + 0.7vw, 1.2em);
-    font-family: cursive;
+    font-family: 'Courier New', Courier, monospace;
+   
 }
 
 .containercard {
@@ -146,6 +146,10 @@ table tbody tr td button:hover {
     display: flex;
     flex-direction: column;
     padding: 1%;
+
+}
+.containercard span {
+    min-width: 100%;
 
 }
 
@@ -171,23 +175,27 @@ table tbody tr td button:hover {
     padding: 1%;
 
 }
+
 .card:hover {
     box-shadow: 0 8px 16px 0 #f59a4f;
 }
+
 .linha {
     margin-top: 5px;
 
     height: 1px;
     background-color: #d48729;
     border: 1px solid #d48729;
-    
+
 }
+
 .btncard {
     display: flex;
     justify-content: flex-end;
     padding: 1px;
     margin: .1em;
 }
+
 .btncard button {
     display: flex;
     justify-content: flex-end;
@@ -200,6 +208,7 @@ table tbody tr td button:hover {
     border-radius: 5px;
     border: 1px solid #fdfdfd;
 }
+
 .btncard button:hover {
     background-color: #ffffff;
     transition: ease-in-out .5s;

@@ -21,6 +21,8 @@ export async function writerTaskFirestore(task) {
 }
 export async function updateTaskFirestore(task) {
 
+    console.log(task)
+    console.log(task.id)
     const dbInstance = collection(db, 'task');
     const docRef = doc(dbInstance, task.id)
     let taskCreate = await updateDoc(docRef, {

@@ -16,14 +16,20 @@ export default function Modal({ close, task, name }) {
     const { user } = useContext(AuthContext);
     const onFormSubmit = data => {
 
+        console.log(data)
         if (data.id !== undefined) {
-            updateTaskFirestore(data).then((result) => {
-                console.log(result)
+            if (data.status === null) {
+                console.log("E", data)
+            } else {
+                updateTaskFirestore(data).then((result) => {
+                    console.log(result)
 
-                toast.success('Task editada');
-            }).catch((err) => {
-                toast.success('Task não editada')
-            });
+                    toast.success('Task editada');
+                }).catch((err) => {
+                    toast.success('Task não editada')
+                });
+            }
+
         } else {
             const a = Object.assign(user, data)
             writerTaskFirestore(a).then((result) => {
@@ -53,8 +59,8 @@ export default function Modal({ close, task, name }) {
         desenvolvimento: false,
         deploy: false,
     });
-    const [checkedItem, setCheckedItem] = useState({
-        afazer: '',
+    const [statusItem, setstatusItem] = useState({
+        afazer: null,
         fazendo: '',
         feito: '',
     });
@@ -84,9 +90,9 @@ export default function Modal({ close, task, name }) {
     useEffect(() => {
         hiddenAssunto();
     }, [])
-    useEffect(() => {
-        checkedStatus();
-    }, [])
+    /*  useEffect(() => {
+         checkedStatus();
+     }, []) */
 
 
 
@@ -109,27 +115,27 @@ export default function Modal({ close, task, name }) {
         }
         return;
     }
-    function checkedStatus() {
-
-        if (task.status === 'afazer') {
-            setCheckedItem({ afazer: true, fazendo: false, feito: false, })
-            return;
-        }
-        if (task.status === 'fazendo') {
-            setCheckedItem({ fazendo: true, afazer: false, feito: false, })
-            return;
-        }
-        if (task.status === "feito") {
-            setCheckedItem({ feito: true, fazendo: false, afazer: false, })
-            return;
-        }
+    function checkedStatus(e) {
+        console.log(e)
+        /*    if (task.status === "afazer") {
+               setstatusItem({ afazer: "afazer" })
+               return;
+           }
+           if (task.status === "fazendo") {
+               setstatusItem({ fazendo: true, afazer: false, feito: false, })
+               return;
+           }
+           if (task.status === "feito") {
+               setstatusItem({ feito: true, fazendo: false, afazer: false, })
+               return;
+           } */
         return;
 
     }
+
     function setV(e) {
         setTextAreaItem(e.target.value)
     }
-    //  console.log(task.status)
     function newTask() {
         return (
             <div className='modal'>
@@ -182,7 +188,6 @@ export default function Modal({ close, task, name }) {
     }
 
     function updateTask() {
-        console.log(close)
         return (
             <div className='modal'>
                 <div className="close">
@@ -209,11 +214,11 @@ export default function Modal({ close, task, name }) {
                         <small>{errors?.assunto && errors.assunto.message}</small>
                         <label> Status</label>
                         <div className='status'>
-                            <input type="radio" name="aberto-fazendo-atendido" checked={checkedItem.afazer} value="afazer" {...register('status', registrerOptions.status)} onChange={() => setCheckedItem({ afazer: true, fazendo: false, feito: false })} />
+                            <input type="radio" name="status" checked={task.status === "afazer"} value={statusItem === "afazer"} {...register('status', registrerOptions.status)} onChange={checkedStatus} />
                             <span>A fazer</span>
-                            <input type="radio" name="aberto-fazendo-atendido" checked={checkedItem.fazendo} value="fazendo" {...register('status', registrerOptions.status)} onChange={() => setCheckedItem({ fazendo: true, afazer: false, feito: false })} />
+                            <input type="radio" name="status" checked={task.status === "fazendo"} value={statusItem === "afazer"}  {...register('status', registrerOptions.status)} onChange={checkedStatus} />
                             <span>Fazendo</span>
-                            <input type="radio" name="aberto-fazendo-atendido" checked={checkedItem.feito} value="feito" {...register('status', registrerOptions.status)} onChange={() => setCheckedItem({ feito: true, afazer: false, fazendo: false })} />
+                            <input type="radio" name="status" checked={task.status === "feito"} value={statusItem === "afazer"}   {...register('status', registrerOptions.status)} onChange={checkedStatus} />
                             <span>Feito</span>
                         </div>
                         <small>{errors?.radio && errors.radio.message}</small>
