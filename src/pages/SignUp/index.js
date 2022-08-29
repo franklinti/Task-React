@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo256x256.png'
+import logo from '../../assets/logo128x128.png'
 import { useForm } from 'react-hook-form';
 // Import context  auth User
 import { useContext } from 'react';

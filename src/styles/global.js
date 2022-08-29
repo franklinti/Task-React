@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
-
+//Demonstrar Style component Apenas!
+//Quem usa, deve se preocupar com a os 13k de import em cada Arquivo
+// Levo em consideração o tamanho de cada import no meu código
 export default createGlobalStyle`
 *{
     margin: 0;
@@ -50,11 +52,12 @@ small {
 
 @media only screen and (min-width: 320px) and (max-width:428px) {
     .container {
-      margin: 50% auto;
+      display: flex;
+      justify-content: center;
+      flex-direction:column;
+      margin:18%;
       overflow: hidden;
-  
     }
-  
     .sidebar {
       min-width: 98%;
       height: 10%;

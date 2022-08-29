@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo256x256.png'
+import logo from '../../assets/logo128x128.png'
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/auth';
-import './style.css'
+import './style.css' 
 function SignIn() {
     const { register, handleSubmit, formState: { errors } } = useForm({ mode: "onBlur" });
     const onFormSubmit = data => {

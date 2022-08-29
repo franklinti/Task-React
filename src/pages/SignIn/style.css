@@ -1,5 +1,9 @@
 .container {
-    margin: 15% auto;
+    display: flex;
+    justify-content: center;
+    margin: 15% ;
+   
+    /* 
     background-color: rgb(224, 222, 222);
     max-width: 500px;
     height: 300px;
@@ -15,6 +19,7 @@
     border-block-end-color: #f59a4f;
     border-block-start-color: #f59a4f;
     overflow: hidden;
+     */
 }
 
 .container div {
@@ -29,7 +34,7 @@
 }
 
 .container div img {
-    max-width: 100%;
+    width: 80%;
     height: 100%;
     border-top-left-radius: 30px;
     object-fit: contain;
